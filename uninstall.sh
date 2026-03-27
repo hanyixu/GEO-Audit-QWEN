@@ -21,6 +21,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+# Ensure unmatched globs expand to nothing
+shopt -s nullglob
+
 echo ""
 echo -e "${YELLOW}GEO-SEO Claude Code Skill Uninstaller${NC}"
 echo ""
