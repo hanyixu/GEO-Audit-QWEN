@@ -43,6 +43,8 @@ try:
     from reportlab.graphics.charts.barcharts import VerticalBarChart
     from reportlab.graphics.charts.piecharts import Pie
     from reportlab.graphics import renderPDF
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 except ImportError:
     print("ERROR: Required packages not installed. Run: pip install -r requirements.txt")
     sys.exit(1)
@@ -65,6 +67,30 @@ TEXT_PRIMARY = HexColor("#2d3436")   # Dark text
 TEXT_SECONDARY = HexColor("#636e72") # Grey text
 WHITE = white
 BLACK = black
+
+
+def setup_fonts():
+    """
+    Ensure a font with CJK glyph coverage is registered.
+
+    ReportLab's default Helvetica does not include Chinese glyphs, which causes
+    squares/garbled text when rendering zh-CN content. Unicode CID fonts ship
+    with ReportLab and do not require bundling TTF files.
+    """
+    cjk_font = "STSong-Light"  # Chinese (Simplified/Traditional) CID font
+    try:
+        # Registering twice raises a KeyError in some versions; ignore if present.
+        pdfmetrics.getFont(cjk_font)
+    except Exception:
+        pdfmetrics.registerFont(UnicodeCIDFont(cjk_font))
+
+    # There is no true bold for CID fonts here; keep same font for "bold" slots.
+    return {
+        "base": cjk_font,
+        "base_bold": cjk_font,
+        "latin": "Helvetica",
+        "latin_bold": "Helvetica-Bold",
+    }
 
 
 def get_score_color(score):
@@ -188,11 +214,12 @@ def create_platform_chart(platforms, width=450, height=180):
 
 def build_styles():
     """Create custom paragraph styles."""
+    fonts = setup_fonts()
     styles = getSampleStyleSheet()
 
     styles.add(ParagraphStyle(
         name='ReportTitle',
-        fontName='Helvetica-Bold',
+        fontName=fonts["base_bold"],
         fontSize=28,
         textColor=PRIMARY,
         spaceAfter=6,
@@ -201,7 +228,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='ReportSubtitle',
-        fontName='Helvetica',
+        fontName=fonts["base"],
         fontSize=14,
         textColor=TEXT_SECONDARY,
         spaceAfter=20,
@@ -210,7 +237,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='SectionHeader',
-        fontName='Helvetica-Bold',
+        fontName=fonts["base_bold"],
         fontSize=18,
         textColor=PRIMARY,
         spaceBefore=20,
@@ -220,7 +247,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='SubHeader',
-        fontName='Helvetica-Bold',
+        fontName=fonts["base_bold"],
         fontSize=13,
         textColor=ACCENT,
         spaceBefore=14,
@@ -230,7 +257,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='BodyText_Custom',
-        fontName='Helvetica',
+        fontName=fonts["base"],
         fontSize=10,
         textColor=TEXT_PRIMARY,
         spaceBefore=4,
@@ -241,7 +268,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='SmallText',
-        fontName='Helvetica',
+        fontName=fonts["base"],
         fontSize=8,
         textColor=TEXT_SECONDARY,
         spaceBefore=2,
@@ -250,7 +277,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='ScoreLabel',
-        fontName='Helvetica-Bold',
+        fontName=fonts["latin_bold"],
         fontSize=36,
         textColor=PRIMARY,
         alignment=TA_CENTER,
@@ -258,7 +285,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='HighlightBox',
-        fontName='Helvetica',
+        fontName=fonts["base"],
         fontSize=10,
         textColor=TEXT_PRIMARY,
         backColor=LIGHT_BG,
@@ -270,7 +297,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='CriticalFinding',
-        fontName='Helvetica-Bold',
+        fontName=fonts["base_bold"],
         fontSize=10,
         textColor=DANGER,
         spaceBefore=4,
@@ -279,7 +306,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='Recommendation',
-        fontName='Helvetica',
+        fontName=fonts["base"],
         fontSize=10,
         textColor=TEXT_PRIMARY,
         leftIndent=15,
@@ -291,7 +318,7 @@ def build_styles():
 
     styles.add(ParagraphStyle(
         name='Footer',
-        fontName='Helvetica',
+        fontName=fonts["base"],
         fontSize=8,
         textColor=TEXT_SECONDARY,
         alignment=TA_CENTER,
@@ -303,6 +330,7 @@ def build_styles():
 def header_footer(canvas, doc):
     """Add header and footer to each page."""
     canvas.saveState()
+    fonts = setup_fonts()
 
     # Header line
     canvas.setStrokeColor(ACCENT)
@@ -310,7 +338,7 @@ def header_footer(canvas, doc):
     canvas.line(50, letter[1] - 40, letter[0] - 50, letter[1] - 40)
 
     # Header text
-    canvas.setFont('Helvetica', 8)
+    canvas.setFont(fonts["base"], 8)
     canvas.setFillColor(TEXT_SECONDARY)
     canvas.drawString(50, letter[1] - 35, "GEO-SEO Analysis Report")
 
@@ -319,7 +347,7 @@ def header_footer(canvas, doc):
     canvas.setLineWidth(0.5)
     canvas.line(50, 40, letter[0] - 50, 40)
 
-    canvas.setFont('Helvetica', 8)
+    canvas.setFont(fonts["base"], 8)
     canvas.setFillColor(TEXT_SECONDARY)
     canvas.drawString(50, 28, f"Generated {datetime.now().strftime('%B %d, %Y')}")
     canvas.drawRightString(letter[0] - 50, 28, f"Page {doc.page}")
@@ -330,12 +358,13 @@ def header_footer(canvas, doc):
 
 def make_table_style(header_color=PRIMARY):
     """Create a consistent table style."""
+    fonts = setup_fonts()
     return TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), header_color),
         ('TEXTCOLOR', (0, 0), (-1, 0), WHITE),
-        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTNAME', (0, 0), (-1, 0), fonts["base_bold"]),
         ('FONTSIZE', (0, 0), (-1, 0), 9),
-        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTNAME', (0, 1), (-1, -1), fonts["base"]),
         ('FONTSIZE', (0, 1), (-1, -1), 9),
         ('TEXTCOLOR', (0, 1), (-1, -1), TEXT_PRIMARY),
         ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
@@ -352,6 +381,8 @@ def make_table_style(header_color=PRIMARY):
 
 def generate_report(data, output_path="GEO-REPORT.pdf"):
     """Generate the full PDF report from audit data."""
+    # Must register CJK-capable fonts before any Paragraph/Table is built.
+    fonts = setup_fonts()
 
     doc = SimpleDocTemplate(
         output_path,
@@ -425,8 +456,8 @@ def generate_report(data, output_path="GEO-REPORT.pdf"):
 
     details_table = Table(details_data, colWidths=[120, 350])
     details_table.setStyle(TableStyle([
-        ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
-        ('FONTNAME', (1, 0), (1, -1), 'Helvetica'),
+        ('FONTNAME', (0, 0), (0, -1), fonts["base_bold"]),
+        ('FONTNAME', (1, 0), (1, -1), fonts["base"]),
         ('FONTSIZE', (0, 0), (-1, -1), 11),
         ('TEXTCOLOR', (0, 0), (0, -1), ACCENT),
         ('TEXTCOLOR', (1, 0), (1, -1), TEXT_PRIMARY),
@@ -568,27 +599,27 @@ def generate_report(data, output_path="GEO-REPORT.pdf"):
     if crawler_access:
         # Use Paragraph objects for text wrapping in cells
         cell_style = ParagraphStyle(
-            'CrawlerCell', fontName='Helvetica', fontSize=9,
+            'CrawlerCell', fontName=fonts["base"], fontSize=9,
             textColor=TEXT_PRIMARY, leading=12,
         )
         header_cell_style = ParagraphStyle(
-            'CrawlerHeaderCell', fontName='Helvetica-Bold', fontSize=9,
+            'CrawlerHeaderCell', fontName=fonts["base_bold"], fontSize=9,
             textColor=WHITE, leading=12,
         )
         status_style_allowed = ParagraphStyle(
-            'StatusAllowed', fontName='Helvetica-Bold', fontSize=9,
+            'StatusAllowed', fontName=fonts["base_bold"], fontSize=9,
             textColor=SUCCESS, leading=12,
         )
         status_style_blocked = ParagraphStyle(
-            'StatusBlocked', fontName='Helvetica-Bold', fontSize=9,
+            'StatusBlocked', fontName=fonts["base_bold"], fontSize=9,
             textColor=DANGER, leading=12,
         )
         status_style_restricted = ParagraphStyle(
-            'StatusRestricted', fontName='Helvetica-Bold', fontSize=9,
+            'StatusRestricted', fontName=fonts["base_bold"], fontSize=9,
             textColor=WARNING, leading=12,
         )
         status_style_default = ParagraphStyle(
-            'StatusDefault', fontName='Helvetica', fontSize=9,
+            'StatusDefault', fontName=fonts["base"], fontSize=9,
             textColor=TEXT_PRIMARY, leading=12,
         )
 
