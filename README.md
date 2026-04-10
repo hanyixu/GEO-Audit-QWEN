@@ -13,19 +13,6 @@
 
 ---
 
-## 为什么 GEO 在 2026 年至关重要
-
-| 指标 | 数值 |
-|--------|-------|
-| GEO 服务市场规模 | 850亿+（预计2031年达730亿美元） |
-| AI 引荐流量增长率 | 同比增长 +527% |
-| AI 流量转化率 vs 自然搜索 | 高出 4.4 倍 |
-| Gartner 预测：2028年搜索流量下降 | -50% |
-| 品牌提及 vs 外链对 AI 的影响 | 强相关性高 3 倍 |
-| 已投资 GEO 的营销人员占比 | 仅 23% |
-
----
-
 ## 快速开始
 
 ### 一键安装（macOS / Linux）
@@ -33,14 +20,14 @@
 > **提示：** 如果你已经把本仓库 clone 到本地（或下载了 zip），推荐直接在仓库根目录运行 `./install.sh`（确保安装的是当前仓库版本）。只有在你确认下面的仓库地址后，再使用 curl 一键安装。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>/v1.0.0/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hanyixu/geo-seo-claude-CN/v1.0.0/install.sh | bash
 ```
 
 ### 手动安装
 
 ```bash
-git clone https://github.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>.git
-cd <YOUR_REPO>
+git clone https://github.com/hanyixu/geo-seo-claude-CN.git
+cd geo-seo-claude-CN
 git checkout v1.0.0
 ./install.sh
 ```
@@ -53,11 +40,11 @@ git checkout v1.0.0
 
 ```bash
 # 方式一：一键安装（在 Git Bash 中运行，不要用 PowerShell 或 CMD）
-curl -fsSL https://raw.githubusercontent.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>/v1.0.0/install-win.sh | bash
+curl -fsSL https://raw.githubusercontent.com/hanyixu/geo-seo-claude-CN/v1.0.0/install-win.sh | bash
 
 # 方式二：手动安装
-git clone https://github.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>.git
-cd <YOUR_REPO>
+git clone https://github.com/hanyixu/geo-seo-claude-CN.git
+cd geo-seo-claude-CN
 git checkout v1.0.0
 ./install-win.sh
 ```
