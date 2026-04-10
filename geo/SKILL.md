@@ -2,7 +2,7 @@
 name: geo
 description: >
   GEO-first SEO analysis tool. Optimizes websites for AI-powered search engines
-  (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) while maintaining
+  (CN focus: 元宝/豆包/千问; optional: ChatGPT/Claude/Perplexity/Gemini) while maintaining
   traditional SEO foundations. Performs full GEO audits, citability scoring,
   AI crawler analysis, llms.txt generation, brand mention scanning, platform-specific
   optimization, schema markup, technical SEO, content quality (E-E-A-T), and
@@ -29,7 +29,7 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 | `/geo crawlers <url>` | Check AI crawler access (robots.txt analysis) |
 | `/geo llmstxt <url>` | Analyze or generate llms.txt file |
 | `/geo brands <url>` | Scan brand mentions across AI-cited platforms |
-| `/geo platforms <url>` | Platform-specific optimization (ChatGPT, Perplexity, Google AIO) |
+| `/geo platforms <url>` | Platform-specific optimization (CN: 元宝/豆包/千问) |
 | `/geo schema <url>` | Detect, validate, and generate structured data |
 | `/geo technical <url>` | Traditional technical SEO audit |
 | `/geo content <url>` | Content quality and E-E-A-T assessment |
@@ -74,7 +74,7 @@ Launch these 5 subagents simultaneously:
 | Subagent | File | Responsibility |
 |----------|------|---------------|
 | geo-ai-visibility | `agents/geo-ai-visibility.md` | GEO audit, citability, AI crawlers, llms.txt, brand mentions |
-| geo-platform-analysis | `agents/geo-platform-analysis.md` | Platform-specific optimization (ChatGPT, Perplexity, Google AIO) |
+| geo-platform-analysis | `agents/geo-platform-analysis.md` | Platform-specific optimization (CN: 元宝/豆包/千问) |
 | geo-technical | `agents/geo-technical.md` | Technical SEO, Core Web Vitals, crawlability, indexability |
 | geo-content | `agents/geo-content.md` | Content quality, E-E-A-T, readability, AI content detection |
 | geo-schema | `agents/geo-schema.md` | Schema markup detection, validation, generation |

@@ -6,7 +6,10 @@ set -euo pipefail
 # Run this script from Git Bash, NOT PowerShell or CMD.
 # ============================================================
 
-REPO_URL="https://github.com/zubair-trabzada/geo-seo-claude.git"
+DEFAULT_REPO_URL="https://github.com/zubair-trabzada/geo-seo-claude.git"
+# For China deployments, prefer mirroring the repo (e.g. Gitee) and set:
+#   GEO_REPO_URL="https://gitee.com/<org>/<repo>.git"
+REPO_URL="${GEO_REPO_URL:-$DEFAULT_REPO_URL}"
 CLAUDE_DIR="${HOME}/.claude"
 SKILLS_DIR="${CLAUDE_DIR}/skills"
 AGENTS_DIR="${CLAUDE_DIR}/agents"
@@ -60,6 +63,7 @@ trap cleanup EXIT
 
 main() {
     print_header
+    print_info "Repo source: ${REPO_URL}"
 
     # ---- Verify Git Bash environment ----
     if [[ "${OSTYPE:-}" != "msys" && "${OSTYPE:-}" != "cygwin" && -z "${WINDIR:-}" ]]; then
@@ -228,7 +232,15 @@ main() {
 
     if [ -f "$SOURCE_DIR/requirements.txt" ]; then
         # Use --user to avoid needing admin rights; suppress noise with -q
-        $PYTHON_CMD -m pip install --user -r "$SOURCE_DIR/requirements.txt" -q 2>/dev/null && {
+        PIP_ARGS=(--user -r "$SOURCE_DIR/requirements.txt" -q)
+        # Optional: set GEO_PIP_INDEX_URL to use a CN mirror, e.g.
+        #   GEO_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+        if [ -n "${GEO_PIP_INDEX_URL:-}" ]; then
+            print_info "Using pip index-url: ${GEO_PIP_INDEX_URL}"
+            PIP_ARGS=(--user -r "$SOURCE_DIR/requirements.txt" -q --index-url "$GEO_PIP_INDEX_URL")
+        fi
+
+        $PYTHON_CMD -m pip install "${PIP_ARGS[@]}" 2>/dev/null && {
             print_success "Python dependencies installed"
         } || {
             print_warning "Some Python dependencies failed to install."
