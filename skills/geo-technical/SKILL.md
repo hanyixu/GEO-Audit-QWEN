@@ -13,6 +13,12 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 Technical SEO forms the foundation of both traditional search visibility and AI search citation. A technically broken site cannot be crawled, indexed, or cited by any platform. This skill audits 8 categories of technical health with specific attention to GEO requirements — most critically, **server-side rendering** (AI crawlers do not execute JavaScript) and **AI crawler access** (many sites inadvertently block AI crawlers in robots.txt).
 
+## China-First Requirements
+
+- **Output language**: All final user-facing outputs MUST be in Simplified Chinese (zh-CN).
+- **Platforms**: Prioritize CN AI assistants and CN ecosystems (豆包 / 元宝 / 通义千问 / 百度 AI 搜索 / Kimi / DeepSeek). Keep global platforms as secondary.
+- **AI crawler policy**: Prefer allowing CN-relevant crawlers (e.g., Bytespider) unless there is a clear load/licensing reason. Avoid hallucinating CN user-agent strings if unverifiable.
+
 ## How to Use This Skill
 
 1. Collect the target URL (homepage + 2-3 key inner pages)
@@ -55,6 +61,8 @@ Check robots.txt for directives targeting these AI crawlers:
 - Googlebot blocked: 0 points (fatal)
 
 **Important nuance**: Blocking Google-Extended does NOT block Googlebot. Google-Extended only controls AI training data usage, not search indexing. However, blocking Google-Extended may reduce presence in AI Overviews. Recommend allowing Google-Extended unless there is a specific data licensing concern.
+
+**CN note**: In a China-first GEO context, Bytespider is typically high value (ByteDance ecosystem). Treat it as Tier-1/2 for CN visibility unless you intentionally block it.
 
 ### 1.3 XML Sitemaps
 - Fetch sitemap (check robots.txt for location, or try `/sitemap.xml`, `/sitemap_index.xml`)
@@ -408,12 +416,12 @@ ChatGPT uses Bing's index. Bing Copilot uses Bing's index. Faster Bing indexing 
 Generate **GEO-TECHNICAL-AUDIT.md** with:
 
 ```markdown
-# GEO Technical SEO Audit — [Domain]
-Date: [Date]
+# GEO 技术审计报告（CN 优先）— [Domain]
+日期： [Date]
 
-## Technical Score: XX/100
+## 技术分数： XX/100
 
-## Score Breakdown
+## 分数拆解
 | Category | Score | Status |
 |---|---|---|
 | Crawlability | XX/15 | Pass/Warn/Fail |
@@ -427,22 +435,22 @@ Date: [Date]
 
 Status: Pass = 80%+ of category points, Warn = 50-79%, Fail = <50%
 
-## AI Crawler Access
-| Crawler | User-Agent | Status | Recommendation |
+## AI 爬虫访问
+| 爬虫 | User-Agent | 状态 | 建议 |
 |---|---|---|---|
 | GPTBot | GPTBot | Allowed/Blocked | [Action] |
 | Googlebot | Googlebot | Allowed/Blocked | [Action] |
 [Continue for all AI crawlers]
 
-## Critical Issues (fix immediately)
+## 严重问题（立刻修复）
 [List with specific page URLs and what is wrong]
 
-## Warnings (fix this month)
+## 警告（本月修复）
 [List with details]
 
-## Recommendations (optimize this quarter)
+## 建议（本季度优化）
 [List with details]
 
-## Detailed Findings
+## 详细发现
 [Per-category breakdown with evidence]
 ```

@@ -13,6 +13,12 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 Structured data is the primary machine-readable signal that tells AI systems what an entity IS, what it does, and how it connects to other entities. While schema markup has traditionally been about earning Google rich results, its role in GEO is fundamentally different: **structured data is how AI models understand and trust your entity**. A complete entity graph in structured data dramatically increases citation probability across all AI search platforms.
 
+## China-First Requirements
+
+- **Output language**: All final user-facing outputs MUST be in Simplified Chinese (zh-CN).
+- **Entity linking priority**: Prioritize CN platforms in `sameAs` (百度百科、公众号/视频号、小红书、抖音、B站、知乎、微博) and CN-relevant vertical directories.
+- **Global platforms**: Keep as optional (Wikipedia/Wikidata/LinkedIn/GitHub), used when the brand has meaningful international presence.
+
 ## How to Use This Skill
 
 1. Fetch the target page HTML using `fetch_page.py` (see note below)
@@ -48,16 +54,41 @@ JSON-LD is the **strongly recommended format** for GEO. Google, Bing, and AI pla
 
 ## Step 2: Validation
 
-For each detected schema block, validate:
+For each detected schema block, validate using a **CN-friendly strictness model**.
 
-1. **Valid JSON**: Is the JSON-LD syntactically valid? Check for trailing commas, unquoted keys, malformed strings.
-2. **Valid @type**: Does the `@type` match a recognized Schema.org type? Check against https://schema.org/docs/full.html.
-3. **Required Properties**: Does the schema include all required properties for its type? (See per-type requirements below.)
-4. **Recommended Properties**: Does the schema include recommended properties that increase AI discoverability?
-5. **sameAs Links**: Does the schema include `sameAs` properties linking to other platform presences?
-6. **URL Validity**: Do all URLs in the schema resolve (not 404)?
-7. **Nesting**: Is the schema properly nested (e.g., author inside Article, address inside Organization)?
-8. **Rendering Method**: Is the JSON-LD in the server-rendered HTML or injected via JavaScript? Per Google's December 2025 guidance, **JavaScript-injected structured data may face delayed processing**. Flag any schema that requires JS execution.
+### Strictness Model (CN-Friendly)
+
+This repo is often used in China network and for CN AI assistants. In practice, you do **not** need “perfect schema” everywhere. Use this rule:
+
+- **Must-Fix (Blocking)**: Issues that cause parse failure, entity confusion, or obvious contradictions.
+- **Should-Fix (High ROI)**: Issues that materially improve machine understanding/citability.
+- **Nice-to-Have**: Completeness extras that rarely change outcomes.
+
+When scoring or listing issues, do not punish sites for missing optional properties. Prioritize **stability, consistency, and machine readability**.
+
+### Must-Fix (Blocking) checks
+
+1. **Valid JSON**: Is the JSON-LD syntactically valid? (No trailing commas, malformed strings.)
+2. **Valid `@type`**: Is `@type` a recognized Schema.org type?
+3. **Core entity present**:
+   - Business sites: at least one **Organization** (or subtype like LocalBusiness)
+   - Content sites: **Article** + **publisher** (Organization) + **author**
+   - Product pages: **Product** + **offers** (when pricing is shown)
+4. **Entity consistency**: `name`, `url`, canonical domain, and contact fields do not conflict across schema blocks.
+5. **No duplicates/conflicts**: Avoid multiple contradictory Organization blocks on the same page.
+
+### Should-Fix (High ROI) checks
+
+6. **sameAs links**: Provide `sameAs` to official presences (CN-focused: 百度百科、公众号、抖音、小红书、B站、知乎、微博等).
+7. **Nesting**: Proper nesting (e.g., `author` inside Article; `address` inside Organization/LocalBusiness).
+8. **URL validity**: URLs should resolve where feasible. In CN environments, if a platform is access-restricted, record as “unverifiable” instead of assuming 404.
+
+### Nice-to-Have checks
+
+9. **Recommended properties**: Enrich with additional properties that improve retrieval and grounding (e.g., `foundingDate`, `knowsAbout`, `contactPoint`, etc.).
+10. **Rendering method**: Prefer server-rendered JSON-LD. If JSON-LD is injected via JS, flag as a *risk* (not always a failure), because processing may be delayed or inconsistent across crawlers.
+
+> Note: The old “Required vs Recommended properties” framing is intentionally relaxed here. Treat “required” as *required for your business goal*, not as a theoretical completeness checklist.
 
 ---
 
@@ -217,20 +248,16 @@ The `sameAs` property is the single most important structured data property for 
 
 ### Recommended sameAs Links (in priority order)
 
-1. **Wikipedia article** — highest authority entity link
-2. **Wikidata item** — machine-readable entity identifier (e.g., `https://www.wikidata.org/wiki/Q12345`)
-3. **LinkedIn** — company page or personal profile
-4. **YouTube** — channel URL
-5. **Twitter/X** — profile URL
-6. **Facebook** — page URL
-7. **Crunchbase** — company profile (for startups/tech)
-8. **GitHub** — organization or personal profile (for tech)
-9. **Google Scholar** — author profile (for researchers/academics)
-10. **ORCID** — researcher identifier (for academics)
-11. **Instagram** — profile URL
-12. **Apple App Store / Google Play** — app listings (for software)
-13. **BBB** — Better Business Bureau listing (for US businesses)
-14. **Industry directories** — relevant vertical directories
+1. **百度百科** — strongest practical CN entity baseline for many categories
+2. **微信公众号 / 视频号** — official long-form + distribution identity
+3. **小红书** — high-intent product/service evaluation signals
+4. **抖音 / 快手（如适用）** — short-video ecosystem identity
+5. **B站** — long-form tutorials/reviews
+6. **知乎** — high-intent Q&A occupancy
+7. **微博** — media / KOL reference hub
+8. **垂直平台**（按行业选择）— 美团/大众点评、高德/百度地图、天猫/京东/拼多多/1688、企查查/天眼查、行业协会名录等
+9. **Wikipedia / Wikidata（可选）** — if the entity has a stable international footprint
+10. **LinkedIn / GitHub（可选）** — for B2B/tech brands with active profiles
 
 ### sameAs Audit Process
 1. Collect all known web presences for the entity
@@ -336,35 +363,41 @@ Based on the detected business type, generate ready-to-paste JSON-LD blocks. Alw
 Generate **GEO-SCHEMA-REPORT.md** with:
 
 ```markdown
-# GEO Schema & Structured Data Report — [Domain]
-Date: [Date]
+# GEO Schema 与结构化数据报告（CN 优先）— [Domain]
+日期： [Date]
 
-## Schema Score: XX/100
+## Schema 评分： XX/100
 
-## Detected Schemas
+## 检测到的结构化数据
 | Page | Schema Type | Format | Status | Issues |
 |---|---|---|---|---|
 | / | Organization | JSON-LD | Valid | Missing sameAs |
 | /blog/post-1 | Article | JSON-LD | Valid | No author schema |
 
-## Validation Results
-[List each schema with pass/fail per property]
+## 校验结果
+[按 schema 块逐项列出：通过/失败、错误原因、修复建议]
 
-## Missing Recommended Schemas
-[List schemas that should be present based on business type but are not]
+## 缺失的推荐 Schema
+[根据业务类型列出应补齐的 schema（含优先级）]
 
-## sameAs Audit
+## sameAs 实体链接清单（CN 优先）
 | Platform | URL | Status |
 |---|---|---|
-| Wikipedia | [URL or "Not found"] | Present/Missing |
-| LinkedIn | [URL or "Not found"] | Present/Missing |
+| 百度百科 | [URL or "未找到"] | 已有/缺失 |
+| 微信公众号/视频号 | [URL or "未找到"] | 已有/缺失 |
+| 小红书 | [URL or "未找到"] | 已有/缺失 |
+| 抖音 | [URL or "未找到"] | 已有/缺失 |
+| B站 | [URL or "未找到"] | 已有/缺失 |
+| 知乎 | [URL or "未找到"] | 已有/缺失 |
+| 微博 | [URL or "未找到"] | 已有/缺失 |
+| 垂直平台（按行业） | [URL or "未找到"] | 已有/缺失 |
 [Continue for all recommended platforms]
 
-## Generated JSON-LD Code
+## 生成的 JSON-LD 代码（可直接上线）
 [Ready-to-paste JSON-LD blocks for each missing or incomplete schema]
 
-## Implementation Notes
-- Where to place each JSON-LD block
-- Server-rendering requirements
-- Testing with Google Rich Results Test and Schema.org Validator
+## 实施说明
+- 放置位置（推荐：原始 HTML 的 `<head>`，避免仅用 JS 注入）
+- SSR/可抓取要求（AI 爬虫通常不执行 JS）
+- 验证方式（结构化数据测试工具 + 线上抓取自检）
 ```

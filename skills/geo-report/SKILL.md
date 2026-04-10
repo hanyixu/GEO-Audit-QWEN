@@ -13,6 +13,13 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 This skill aggregates outputs from all GEO audit skills into a single, professional report that can be delivered directly to a client or stakeholder. The report is written for **business owners and marketing leaders**, not developers — technical findings are translated into business impact and clear action items with priority levels.
 
+## China-First Requirements
+
+- **Output language**: The final report MUST be written in Simplified Chinese (zh-CN).
+- **Primary platforms (CN)**: 豆包、元宝、通义千问、百度 AI 搜索、Kimi、DeepSeek
+- **Primary ecosystems (CN)**: 微信公众号/视频号/搜一搜、小红书、抖音、B站、知乎、微博、百度百科
+- **Global platforms**: Optional appendix only (ChatGPT/Claude/Gemini/Perplexity/Bing Copilot, Wikipedia/Wikidata/LinkedIn/Reddit/YouTube)
+
 ## How to Use This Skill
 
 1. Run the following audits first (or use existing report data):
@@ -77,6 +84,8 @@ Write exactly ONE paragraph (4-6 sentences) covering:
 
 **Tone**: Confident, direct, professional. No jargon. No hedging. Write as a consultant delivering findings, not as a tool generating a report.
 
+**Language**: Write the entire report in **Chinese (Simplified)**. Keep terms like GEO / E-E-A-T / Schema as needed, but explain once in Chinese.
+
 ### Section 2: GEO Readiness Score
 
 Present the overall score prominently:
@@ -103,15 +112,15 @@ Then break down by component in a table:
 Present per-platform readiness scores:
 
 ```markdown
-## AI Visibility Dashboard
+## AI 可见度看板（CN 优先）
 
-| AI Platform | Readiness Score | Key Gap | Priority Action |
+| 平台 | 就绪度评分 | 关键缺口 | 优先动作 |
 |---|---|---|---|
-| Google AI Overviews | XX/100 | [One-line gap] | [One-line action] |
-| ChatGPT Web Search | XX/100 | [One-line gap] | [One-line action] |
-| Perplexity AI | XX/100 | [One-line gap] | [One-line action] |
-| Google Gemini | XX/100 | [One-line gap] | [One-line action] |
-| Bing Copilot | XX/100 | [One-line gap] | [One-line action] |
+| 豆包 | XX/100 | [一句话缺口] | [一句话动作] |
+| 元宝 | XX/100 | [一句话缺口] | [一句话动作] |
+| 通义千问 | XX/100 | [一句话缺口] | [一句话动作] |
+| 百度 AI 搜索 | XX/100 | [一句话缺口] | [一句话动作] |
+| Kimi / DeepSeek（如适用） | XX/100 | [一句话缺口] | [一句话动作] |
 ```
 
 Add a brief paragraph explaining what these scores mean: "These scores reflect how likely your content is to be cited by each AI search platform. A score below 50 indicates significant barriers to citation on that platform."
@@ -141,18 +150,18 @@ Present as a clear table:
 Present entity presence across platforms:
 
 ```markdown
-## Brand Authority
+## 品牌权威与实体信号（CN 优先）
 
-| Platform | Presence | Status | Impact on AI Visibility |
+| 平台/生态 | 是否存在 | 状态 | 对 AI 可见度的影响 |
 |---|---|---|---|
-| Wikipedia | Yes/No | [Detail] | Very High — 47.9% of ChatGPT citations are Wikipedia |
-| Wikidata | Yes/No | [Detail] | High — machine-readable entity data |
-| LinkedIn | Yes/No | [Detail] | High — Bing Copilot and ChatGPT signal |
-| YouTube | Yes/No | [Detail] | High — Gemini and Perplexity signal |
-| Reddit | Yes/No | [Detail] | Very High — 46.7% of Perplexity citations are Reddit |
-| Google Knowledge Panel | Yes/No | [Detail] | High — Gemini entity recognition |
-| Crunchbase | Yes/No | [Detail] | Medium — entity validation |
-| GitHub | Yes/No | [Detail] | Medium — tech brand signal |
+| 百度百科 | 是/否 | [详情] | 很高 — CN 语境常见的实体底座 |
+| 微信公众号/视频号 | 是/否 | [详情] | 很高 — 长文沉淀与可检索内容块 |
+| 小红书 | 是/否 | [详情] | 高 — 对比/避坑/口碑影响决策 |
+| 抖音 | 是/否 | [详情] | 中-高 — 短视频可发现与社证 |
+| B站 | 是/否 | [详情] | 中-高 — 深度教程/测评的引用素材 |
+| 知乎 | 是/否 | [详情] | 高 — 高意图问答占位 |
+| 微博 | 是/否 | [详情] | 中 — 媒体/KOL 提及与传播 |
+| 垂直平台（按行业） | 是/否 | [详情] | 中-高 — 可验证的第三方背书 |
 ```
 
 **Translate for the client**: "AI platforms build trust by cross-referencing your brand across multiple authoritative sources. Each platform where your brand has an accurate, consistent presence increases the likelihood of being cited in AI answers."

@@ -10,21 +10,22 @@ allowed-tools:
   - Write
 ---
 
-# 品牌提及与权威信号扫描（CN）
+# Brand Mentions & Authority Signals (China-First)
 
-## 核心目标
+## Goal
 
-评估品牌在中国环境下的“可发现 + 可检索 + 可验证 + 可复用引用”能力，输出可执行的补齐方案，重点覆盖：
-- **实体打底**：百度百科等“基础事实源”
-- **长内容沉淀**：微信公众号（含搜一搜/第三方检索）
-- **高互动生态**：抖音、快手、小红书、B站、知乎、微博
-- **讨论与风险点**：百度知道、贴吧
+Evaluate a brand’s CN internet “discoverability + retrievability + verifiability + re-citable content” footprint, and produce an actionable fill-the-gaps plan. Focus areas:
 
-> 说明：多数平台反爬严格，本技能以“检索验证 + 行动建议”为主，避免脆弱的自动抓取。
+- **Entity foundation**: Baidu Baike / authoritative directories as “baseline facts”
+- **Long-form deposits**: WeChat Official Accounts (公众号) and WeChat Search (搜一搜)
+- **High-interaction ecosystems**: Xiaohongshu, Douyin, Kuaishou, Bilibili, Zhihu, Weibo
+- **Discussion & risk**: Baidu Zhidao, Tieba
+
+> Note: Many CN platforms have strict anti-scraping controls. This skill prioritizes **search-based verification + recommendations** over brittle automated crawling.
 
 ---
 
-## CN 平台权重模型（建议）
+## Suggested CN Platform Weighting Model
 
 | 平台 | 权重 | 关注点 |
 |---|---:|---|
@@ -38,46 +39,53 @@ allowed-tools:
 | 微博 | 5% | 媒体/大V提及与传播 |
 | 百度知道/贴吧 | 5% | 基础问答与风险点管理 |
 
-总分：`Brand_Authority_Score_CN = Σ(平台得分 * 平台权重)`
+Total: `Brand_Authority_Score_CN = Σ(platform_score * platform_weight)`
+
+Optional vertical add-ons (adjust weights per industry; keep total = 100%):
+- Local life: 美团/大众点评, 高德/百度地图
+- E-commerce: 淘宝/天猫, 京东, 拼多多, 1688
+- B2B/entity validation: 企查查/天眼查, 1688, 行业协会名录
+- Tech/knowledge: CSDN, 掘金, 博客园
 
 ---
 
-## 执行步骤
+## Procedure
 
-### Step 1：确定品牌信息口径
+### Step 1: Normalize brand identifiers (canonical “truth set”)
 
-- 品牌中文名 / 英文名 / 常用简称 / 常见错写
-- 公司主体名（可选）
-- 官网域名
-- 行业/品类
-- 核心产品/服务（Top 3）
+- Brand Chinese name / English name / common abbreviations / common misspellings
+- Legal entity name (optional)
+- Official website domain
+- Industry/category
+- Top 3 products/services (canonical naming)
 
-### Step 2：按平台做“存在性 + 质量 + 第三方性”检查
+### Step 2: Per-platform checks (Presence + Quality + Third-party)
 
-对每个平台，记录：
-- **存在性**：是否有官方账号/词条/内容
-- **质量**：是否有可引用的结构化内容（定义、FAQ、参数、对比、案例）
-- **第三方性**：是否存在非官方的测评/讨论/媒体提及
+For each platform, record:
+- **Presence**: official account / profile / entry exists?
+- **Quality**: does it contain “citable blocks” (definitions, FAQs, specs, comparisons, cases)?
+- **Third-party**: independent reviews/discussions/media mentions exist?
 
-建议搜索（示例）：
-- 百度：`[品牌名] 百度百科`、`[品牌名] 公众号`、`[品牌名] 小红书`、`[品牌名] 抖音`、`[品牌名] 快手`、`[品牌名] B站`、`[品牌名] 知乎`、`[品牌名] 微博`、`[品牌名] 百度知道`、`[品牌名] 贴吧`
-- 公众号补充：使用“搜狗微信搜索”检索文章（可选）
+Suggested queries (examples):
+- Baidu: `[品牌名] 百度百科`, `[品牌名] 公众号`, `[品牌名] 小红书`, `[品牌名] 抖音`, `[品牌名] 快手`, `[品牌名] B站`, `[品牌名] 知乎`, `[品牌名] 微博`, `[品牌名] 百度知道`, `[品牌名] 贴吧`
+- Optional: Sogou Weixin search for historical OA articles (环境允许时)
 
-### Step 3：舆情与风险点
+### Step 3: Sentiment & risk themes
 
-对讨论/问答平台与社媒做快速判断：正面/中性/负面，并提炼“负面高频点”作为必须整改项。
+For Q&A/discussion platforms and social, do a fast triage: Positive / Neutral / Negative. Extract “high-frequency negative themes” as must-fix items.
 
-### Step 4：输出平台级建议与 30 天行动计划
+### Step 4: Platform-specific actions + 30-day plan
 
-- 先补齐：百科/公众号/官网一致性（实体打底）
-- 再补齐：高意图问题占位（知乎/小红书）
-- 再补齐：视频生态的“可引用信息块”（抖音/B站）
+Prioritization:
+- First: Baike + WeChat + website consistency (entity foundation)
+- Second: high-intent Q&A occupancy (Zhihu / Xiaohongshu)
+- Third: “citable info blocks” inside video ecosystems (Douyin / Bilibili)
 
 ---
 
-## 输出格式（GEO-BRAND-MENTIONS.md）
+## Output (MUST be in Simplified Chinese)
 
-生成文件 `GEO-BRAND-MENTIONS.md`：
+Generate `GEO-BRAND-MENTIONS.md` in **中文（简体）** using this template:
 
 ```markdown
 # 品牌权威与提及报告（CN）：[品牌名]

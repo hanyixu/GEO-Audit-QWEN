@@ -1,259 +1,265 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="GEO-SEO Claude Code Skill" width="900"/>
+  <img src="assets/banner.svg" alt="GEO-SEO Claude Code 技能" width="900"/>
 </p>
 
 <p align="center">
-  <strong>GEO-first, SEO-supported.</strong> Optimize websites for AI-powered search engines<br/>
-  (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) while maintaining traditional SEO foundations.
+  <strong>GEO 优先，SEO 支撑。</strong> 为 AI 驱动的搜索引擎优化网站<br/>
+  （豆包、元宝、通义千问、Kimi、DeepSeek、百度 AI 搜索）同时巩固传统 SEO 基础。
 </p>
 
 <p align="center">
-  AI search is eating traditional search. This tool optimizes for where traffic is going, not where it was.
+  AI 搜索正在蚕食传统搜索流量。这个工具帮你优化流量的去向，而不是它曾经的来源。
 </p>
 
 ---
 
-## Why GEO Matters (2026)
+## 为什么 GEO 在 2026 年至关重要
 
-| Metric | Value |
+| 指标 | 数值 |
 |--------|-------|
-| GEO services market | $850M+ (projected $7.3B by 2031) |
-| AI-referred traffic growth | +527% year-over-year |
-| AI traffic conversion rate vs organic | 4.4x higher |
-| Gartner: search traffic drop by 2028 | -50% |
-| Brand mentions vs backlinks for AI | 3x stronger correlation |
-| Marketers investing in GEO | Only 23% |
+| GEO 服务市场规模 | 850亿+（预计2031年达730亿美元） |
+| AI 引荐流量增长率 | 同比增长 +527% |
+| AI 流量转化率 vs 自然搜索 | 高出 4.4 倍 |
+| Gartner 预测：2028年搜索流量下降 | -50% |
+| 品牌提及 vs 外链对 AI 的影响 | 强相关性高 3 倍 |
+| 已投资 GEO 的营销人员占比 | 仅 23% |
 
 ---
 
-## Quick Start
+## 快速开始
 
-### One-Command Install (macOS/Linux)
+### 一键安装（macOS / Linux）
+
+> **提示：** 如果你已经把本仓库 clone 到本地（或下载了 zip），推荐直接在仓库根目录运行 `./install.sh`（确保安装的是当前仓库版本）。只有在你确认下面的仓库地址后，再使用 curl 一键安装。
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zubair-trabzada/geo-seo-claude/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>/v1.0.0/install.sh | bash
 ```
 
-### Manual Install
+### 手动安装
 
 ```bash
-git clone https://github.com/zubair-trabzada/geo-seo-claude.git
-cd geo-seo-claude
+git clone https://github.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>.git
+cd <YOUR_REPO>
+git checkout v1.0.0
 ./install.sh
 ```
 
-### Windows (Git Bash)
+### Windows（Git Bash）
 
-Requires [Git for Windows](https://git-scm.com/downloads) which includes Git Bash.
+需要安装 [Git for Windows](https://git-scm.com/downloads)，其中包含 Git Bash。
+
+> **提示：** 如果你已经把本仓库 clone 到本地（或下载了 zip），推荐直接在仓库根目录运行 `./install-win.sh`（确保安装的是当前仓库版本）。只有在你确认下面的仓库地址后，再使用 curl 一键安装。
 
 ```bash
-# Option 1: One-command install (run from Git Bash, not PowerShell/CMD)
-curl -fsSL https://raw.githubusercontent.com/zubair-trabzada/geo-seo-claude/main/install-win.sh | bash
+# 方式一：一键安装（在 Git Bash 中运行，不要用 PowerShell 或 CMD）
+curl -fsSL https://raw.githubusercontent.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>/v1.0.0/install-win.sh | bash
 
-# Option 2: Manual install
-git clone https://github.com/zubair-trabzada/geo-seo-claude.git
-cd geo-seo-claude
+# 方式二：手动安装
+git clone https://github.com/<YOUR_GITHUB_OWNER>/<YOUR_REPO>.git
+cd <YOUR_REPO>
+git checkout v1.0.0
 ./install-win.sh
 ```
 
-> **Note:** Right-click the folder and select "Open Git Bash here", or open Git Bash and navigate to the directory. Do not use PowerShell or Command Prompt.
+> **注意：** 右键点击文件夹并选择"在此处打开 Git Bash"，或打开 Git Bash 后导航到目录。请勿使用 PowerShell 或命令提示符。
 
-### Requirements
+### 环境要求
 
 - Python 3.8+
 - Claude Code CLI
 - Git
-- Optional: Playwright (for screenshots)
+- 可选：Playwright（用于截图）
 
 ---
 
-## Commands
+## 命令列表
 
-Open Claude Code and use these commands:
+打开 Claude Code 并使用以下命令：
 
-| Command | What It Does |
+| 命令 | 功能说明 |
 |---------|-------------|
-| `/geo audit <url>` | Full GEO + SEO audit with parallel subagents |
-| `/geo quick <url>` | 60-second GEO visibility snapshot |
-| `/geo citability <url>` | Score content for AI citation readiness |
-| `/geo crawlers <url>` | Check AI crawler access (robots.txt) |
-| `/geo llmstxt <url>` | Analyze or generate llms.txt |
-| `/geo brands <url>` | Scan brand mentions across AI-cited platforms |
-| `/geo platforms <url>` | Platform-specific optimization |
-| `/geo schema <url>` | Structured data analysis & generation |
-| `/geo technical <url>` | Technical SEO audit |
-| `/geo content <url>` | Content quality & E-E-A-T assessment |
-| `/geo report <url>` | Generate client-ready GEO report |
-| `/geo report-pdf` | Generate professional PDF report with charts & visualizations |
+| `/geo audit <url>` | 使用并行子智能体执行完整 GEO + SEO 审计 |
+| `/geo quick <url>` | 60 秒 GEO 可见度快速诊断 |
+| `/geo citability <url>` | 评估内容被 AI 引用的准备度得分 |
+| `/geo crawlers <url>` | 检查 AI 爬虫访问权限（robots.txt） |
+| `/geo llmstxt <url>` | 分析或生成 llms.txt 文件 |
+| `/geo brands <url>` | 扫描 AI 引用平台上的品牌提及 |
+| `/geo platforms <url>` | 针对各平台的专项优化 |
+| `/geo schema <url>` | 结构化数据分析与生成 |
+| `/geo technical <url>` | 技术 SEO 审计 |
+| `/geo content <url>` | 内容质量与 E-E-A-T 评估 |
+| `/geo report <url>` | 生成可交付客户的 GEO 报告 |
+| `/geo report-pdf` | 生成带图表和可视化内容的专业 PDF 报告 |
 
 ---
 
-## Architecture
+## 项目架构
 
 ```
 geo-seo-claude/
-├── geo/                          # Main skill orchestrator
-│   └── SKILL.md                  # Primary skill file with commands & routing
-├── skills/                       # 13 specialized sub-skills
-│   ├── geo-audit/                # Full audit orchestration & scoring
-│   ├── geo-citability/           # AI citation readiness scoring
-│   ├── geo-crawlers/             # AI crawler access analysis
-│   ├── geo-llmstxt/              # llms.txt standard analysis & generation
-│   ├── geo-brand-mentions/       # Brand presence on AI-cited platforms
-│   ├── geo-platform-optimizer/   # Platform-specific AI search optimization
-│   ├── geo-schema/               # Structured data for AI discoverability
-│   ├── geo-technical/            # Technical SEO foundations
-│   ├── geo-content/              # Content quality & E-E-A-T
-│   ├── geo-report/               # Client-ready markdown report generation
-│   ├── geo-report-pdf/           # Professional PDF report with charts
-│   ├── geo-prospect/             # CRM-lite prospect pipeline management
-│   ├── geo-proposal/             # Auto-generate client proposals
-│   └── geo-compare/              # Monthly delta tracking & progress reports
-├── agents/                       # 5 parallel subagents
-│   ├── geo-ai-visibility.md      # GEO audit, citability, crawlers, brands
-│   ├── geo-platform-analysis.md  # Platform-specific optimization
-│   ├── geo-technical.md          # Technical SEO analysis
-│   ├── geo-content.md            # Content & E-E-A-T analysis
-│   └── geo-schema.md             # Schema markup analysis
-├── scripts/                      # Python utilities
-│   ├── fetch_page.py             # Page fetching & parsing
-│   ├── citability_scorer.py      # AI citability scoring engine
-│   ├── brand_scanner.py          # Brand mention detection
-│   ├── llmstxt_generator.py      # llms.txt validation & generation
-│   └── generate_pdf_report.py    # PDF report generator (ReportLab)
-├── schema/                       # JSON-LD templates
-│   ├── organization.json         # Organization schema (with sameAs)
-│   ├── local-business.json       # LocalBusiness schema
-│   ├── article-author.json       # Article + Person schema (E-E-A-T)
-│   ├── software-saas.json        # SoftwareApplication schema
-│   ├── product-ecommerce.json    # Product schema with offers
-│   └── website-searchaction.json # WebSite + SearchAction schema
-├── install.sh                    # One-command installer
-├── uninstall.sh                  # Uninstaller
-├── requirements.txt              # Python dependencies
-└── README.md                     # This file
+├── geo/                          # 主技能编排器
+│   └── SKILL.md                  # 主技能文件，含命令路由
+├── skills/                       # 13 个专项子技能
+│   ├── geo-audit/                # 完整审计编排与评分
+│   ├── geo-citability/           # AI 引用准备度评分
+│   ├── geo-crawlers/             # AI 爬虫访问分析
+│   ├── geo-llmstxt/              # llms.txt 标准分析与生成
+│   ├── geo-brand-mentions/       # AI 引用平台品牌存在感
+│   ├── geo-platform-optimizer/   # 各平台 AI 搜索专项优化
+│   ├── geo-schema/               # AI 可发现性结构化数据
+│   ├── geo-technical/            # 技术 SEO 基础
+│   ├── geo-content/              # 内容质量与 E-E-A-T
+│   ├── geo-report/               # 可交付客户的 Markdown 报告生成
+│   ├── geo-report-pdf/           # 带图表的专业 PDF 报告
+│   ├── geo-prospect/             # 轻量 CRM 客户管道管理
+│   ├── geo-proposal/             # 自动生成客户提案
+│   └── geo-compare/              # 月度变化追踪与进度报告
+├── agents/                       # 5 个并行子智能体
+│   ├── geo-ai-visibility.md      # GEO 审计、引用度、爬虫、品牌
+│   ├── geo-platform-analysis.md  # 平台专项优化
+│   ├── geo-technical.md          # 技术 SEO 分析
+│   ├── geo-content.md            # 内容与 E-E-A-T 分析
+│   └── geo-schema.md             # Schema 结构化数据分析
+├── scripts/                      # Python 工具脚本
+│   ├── fetch_page.py             # 页面抓取与解析
+│   ├── citability_scorer.py      # AI 引用度评分引擎
+│   ├── brand_scanner.py          # 品牌提及检测
+│   ├── llmstxt_generator.py      # llms.txt 验证与生成
+│   └── generate_pdf_report.py    # PDF 报告生成器（ReportLab）
+├── schema/                       # JSON-LD 模板
+│   ├── organization.json         # 机构 Schema（含 sameAs）
+│   ├── local-business.json       # 本地商家 Schema
+│   ├── article-author.json       # 文章 + 作者 Schema（E-E-A-T）
+│   ├── software-saas.json        # 软件应用 Schema
+│   ├── product-ecommerce.json    # 含报价的商品 Schema
+│   └── website-searchaction.json # 网站 + 搜索动作 Schema
+├── install.sh                    # 一键安装脚本
+├── uninstall.sh                  # 卸载脚本
+├── requirements.txt              # Python 依赖
+└── README.md                     # 本文件
 ```
 
 ---
 
-## Data Storage
+## 数据存储
 
-The CRM and reporting skills (`/geo prospect`, `/geo proposal`, `/geo compare`) store runtime data outside the Claude Code directory:
+CRM 和报告技能（`/geo prospect`、`/geo proposal`、`/geo compare`）会在 Claude Code 目录外存储运行数据：
 
 ```
 ~/.geo-prospects/
-├── prospects.json              # Client/prospect pipeline data
-├── proposals/                  # Generated proposal documents
+├── prospects.json              # 客户/潜在客户管道数据
+├── proposals/                  # 生成的提案文档
 │   └── <domain>-proposal-<date>.md
-└── reports/                    # Monthly delta reports
+└── reports/                    # 月度对比报告
     └── <domain>-monthly-<YYYY-MM>.md
 ```
 
-This directory is **not removed** by the uninstaller — delete it manually if you no longer need your prospect data.
+该目录**不会**被卸载脚本删除——如果不再需要客户数据，请手动删除。
 
 ---
 
-## How It Works
+## 工作原理
 
-### Full Audit Flow
+### 完整审计流程
 
-When you run `/geo audit https://example.com`:
+运行 `/geo audit https://example.com` 时：
 
-1. **Discovery** — Fetches homepage, detects business type, crawls sitemap
-2. **Parallel Analysis** — Launches 5 subagents simultaneously:
-   - AI Visibility (citability, crawlers, llms.txt, brand mentions)
-   - Platform Analysis (ChatGPT, Perplexity, Google AIO readiness)
-   - Technical SEO (Core Web Vitals, SSR, security, mobile)
-   - Content Quality (E-E-A-T, readability, freshness)
-   - Schema Markup (detection, validation, generation)
-3. **Synthesis** — Aggregates scores, generates composite GEO Score (0-100)
-4. **Report** — Outputs prioritized action plan with quick wins
+1. **发现阶段** — 抓取首页，识别业务类型，爬取站点地图
+2. **并行分析** — 同时启动 5 个子智能体：
+   - AI 可见度（引用度、爬虫权限、llms.txt、品牌提及）
+   - 平台分析（豆包、通义千问、百度 AI 搜索就绪度）
+   - 技术 SEO（Core Web Vitals、SSR、安全性、移动端）
+   - 内容质量（E-E-A-T、可读性、内容新鲜度）
+   - Schema 结构化数据（检测、验证、生成）
+3. **综合评估** — 汇总各维度得分，生成综合 GEO 评分（0-100）
+4. **报告输出** — 输出优先级排序的行动计划及速效优化项
 
-### Scoring Methodology
+### 评分方法论
 
-| Category | Weight |
+| 评估维度 | 权重 |
 |----------|--------|
-| AI Citability & Visibility | 25% |
-| Brand Authority Signals | 20% |
-| Content Quality & E-E-A-T | 20% |
-| Technical Foundations | 15% |
-| Structured Data | 10% |
-| Platform Optimization | 10% |
+| AI 引用度与可见度 | 25% |
+| 品牌权威信号 | 20% |
+| 内容质量与 E-E-A-T | 20% |
+| 技术基础 | 15% |
+| 结构化数据 | 10% |
+| 平台优化 | 10% |
 
 ---
 
-## Key Features
+## 核心功能
 
-### Citability Scoring
-Analyzes content blocks for AI citation readiness. Optimal AI-cited passages are 134-167 words, self-contained, fact-rich, and directly answer questions.
+### 引用度评分
+分析内容块被 AI 引用的准备程度。最易被 AI 引用的段落通常为 134-167 字，自成体系、富含事实，且能直接回答问题。
 
-### AI Crawler Analysis
-Checks robots.txt for 14+ AI crawlers (GPTBot, ClaudeBot, PerplexityBot, etc.) and provides specific allow/block recommendations.
+### AI 爬虫分析
+检查 robots.txt 对 14+ 种 AI 爬虫（豆包爬虫、百度 Spider、ClaudeBot、GPTBot 等）的配置，并提供具体的允许/屏蔽建议。
 
-### Brand Mention Scanning
-Brand mentions correlate 3x more strongly with AI visibility than backlinks. Scans YouTube, Reddit, Wikipedia, LinkedIn, and 7+ other platforms.
+### 品牌提及扫描
+品牌提及与 AI 可见度的相关性比外链高 3 倍。扫描 B 站、知乎、百度百科、微博、小红书、抖音及其他 7+ 个平台。
 
-### Platform-Specific Optimization
-Only 11% of domains are cited by both ChatGPT and Google AI Overviews for the same query. Provides tailored recommendations per platform.
+### 平台专项优化
+仅有 11% 的域名能同时被豆包和百度 AI 搜索针对同一查询引用。提供各平台的差异化优化建议。
 
-### llms.txt Generation
-Generates the emerging llms.txt standard file that helps AI crawlers understand your site structure.
+### llms.txt 生成
+生成新兴的 llms.txt 标准文件，帮助 AI 爬虫理解你的网站结构。
 
-### Client-Ready Reports
-Generates professional GEO reports in markdown or PDF format. PDF reports include score gauges, bar charts, platform readiness visualizations, color-coded tables, and prioritized action plans — ready to deliver to clients.
-
----
-
-## Use Cases
-
-- **GEO Agencies** — Run client audits and generate deliverables
-- **Marketing Teams** — Monitor and improve AI search visibility
-- **Content Creators** — Optimize content for AI citations
-- **Local Businesses** — Get found by AI assistants
-- **SaaS Companies** — Improve entity recognition across AI platforms
-- **E-commerce** — Optimize product pages for AI shopping recommendations
+### 可交付客户的报告
+生成专业 GEO 报告（Markdown 或 PDF 格式）。PDF 报告包含分数仪表盘、条形图、平台就绪度可视化、颜色编码表格及优先级行动计划——可直接交付给客户。
 
 ---
 
-## Uninstall
+## 适用场景
+
+- **GEO 服务机构** — 执行客户审计并生成交付物
+- **营销团队** — 监控并提升 AI 搜索可见度
+- **内容创作者** — 优化内容以获得 AI 引用
+- **本地商家** — 被 AI 助手精准收录
+- **SaaS 公司** — 提升在各 AI 平台的实体识别度
+- **电商** — 优化商品页面以获得 AI 购物推荐
+
+---
+
+## 卸载
 
 ```bash
 ./uninstall.sh
 ```
 
-Or manually:
+或手动删除：
 ```bash
 rm -rf ~/.claude/skills/geo ~/.claude/skills/geo-* ~/.claude/agents/geo-*.md
 ```
 
 ---
 
-## Want to Turn This Into a Business?
+## 想把这个工具变成一门生意？
 
-The tool is free. Learning how to monetize it is where the community comes in.
+工具本身免费。如何将其变现，欢迎加入社群一起探讨。
 
-**[Join the AI Workshop Community →](https://skool.com/aiworkshop)**
+**[加入 AI 营销交流社群 →](https://skool.com/aiworkshop)**
 
-Inside you'll get:
-- **Video walkthroughs** — Step-by-step setup, running audits, reading results
-- **Client acquisition playbook** — How to find prospects, pitch GEO services, and close deals
-- **Live office hours** — Bring your audit results, get direct help
-- **GEO agency pricing & templates** — Proposal docs, cold outreach scripts, onboarding workflows
+社群内你将获得：
+- **视频教程** — 手把手讲解安装、运行审计、解读报告
+- **客户获取手册** — 如何寻找潜在客户、推销 GEO 服务、完成签单
+- **直播答疑** — 带上你的审计结果，获得一对一指导
+- **GEO 服务定价与模板** — 提案文档、冷启动外发脚本、客户入驻流程
 
-GEO agencies charge $2K–$12K/month. This tool does the audit. The community teaches you how to sell it.
+GEO 服务机构的月收费区间为 1.4 万–8.4 万人民币。这个工具负责审计，社群教你如何销售。
 
 ---
 
-## License
+## 开源协议
 
 MIT License
 
 ---
 
-## Contributing
+## 参与贡献
 
-Contributions welcome!
+欢迎提交贡献！
 
 ---
 
-Built for the AI search era.
+为 AI 搜索时代而生。

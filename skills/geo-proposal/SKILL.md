@@ -22,6 +22,11 @@ Generate a fully customized, client-ready GEO service proposal that:
 4. Includes a realistic ROI projection
 5. Outputs a professional markdown document ready to send
 
+## China-First Requirements
+
+- **Output language**: The proposal MUST be written in Simplified Chinese (zh-CN).
+- **Platforms**: Emphasize CN AI assistants and CN ecosystems (豆包/元宝/通义千问/百度 AI 搜索/Kimi/DeepSeek + 微信/小红书/抖音/B站/知乎等). Global platforms are optional add-ons.
+
 ---
 
 ## Command
@@ -78,42 +83,37 @@ Generate the following document, filling all `[PLACEHOLDERS]` with real audit da
 ---
 
 ```markdown
-# GEO Optimization Proposal
-## [COMPANY NAME] — AI Search Visibility
+# GEO 优化服务方案（CN 优先）
+## [公司/品牌名] — AI 搜索可见度与可引用性提升
 
-**Prepared by:** [YOUR AGENCY NAME]
-**Prepared for:** [CONTACT NAME], [COMPANY NAME]
-**Date:** [DATE]
-**Valid until:** [DATE + 30 DAYS]
-**Reference:** GEO-PROP-[YYMMDD]-[DOMAIN]
+**出品方：** [服务方/机构名]
+**客户：** [联系人]，[公司/品牌名]
+**日期：** [DATE]
+**有效期至：** [DATE + 30 DAYS]
+**编号：** GEO-PROP-[YYMMDD]-[DOMAIN]
 
 ---
 
 ## Executive Summary
 
-[COMPANY NAME] operates in [INDUSTRY] and serves customers across [GEOGRAPHY].
-Our GEO audit of [DOMAIN], conducted on [DATE], reveals a GEO Readiness Score
-of **[SCORE]/100 ([TIER LABEL])**.
+[公司/品牌名] 所处行业为 [INDUSTRY]，主要服务 [GEOGRAPHY] 的客户。
+我们在 [DATE] 对 [DOMAIN] 进行 GEO 审计后，得到综合评分 **[SCORE]/100（[档位]）**。
 
 This means your website currently has [TIER DESCRIPTION — use score interpretation table].
-As AI-powered search (ChatGPT, Google AI Overviews, Perplexity) now influences
-**[X]% of online discovery** and is growing at 527% year-over-year, this gap
-represents a measurable risk to your pipeline.
+随着 AI 搜索/AI 助手（豆包/元宝/通义千问/百度 AI 搜索等）在用户决策链路中的比重持续提升，这些缺口会直接影响品牌被推荐、被引用与被选择的概率，进而影响线索与成交。
 
 The three most urgent issues are:
 1. **[CRITICAL FINDING 1]** — [Business impact in one sentence]
 2. **[CRITICAL FINDING 2]** — [Business impact in one sentence]
 3. **[CRITICAL FINDING 3]** — [Business impact in one sentence]
 
-We recommend the **[TIER NAME] package** at **€[PRICE]/month**, which addresses
-all critical issues within 90 days and positions [COMPANY] as an AI-visible
-authority in [INDUSTRY].
+我们建议采用 **[方案档位]**（**€[PRICE]/月**），目标是在 90 天内解决关键问题，并在 [INDUSTRY] 领域建立“可验证、可引用、可复述”的 AI 友好信息体系。
 
 ---
 
-## The Opportunity: Why GEO Matters for [COMPANY NAME]
+## 为什么现在必须做 GEO（对 [公司/品牌名] 的意义）
 
-### The AI Search Shift Is Already Happening
+### AI 搜索迁移已经发生
 
 | Metric | Value |
 |--------|-------|
@@ -127,7 +127,7 @@ authority in [INDUSTRY].
 **First-mover advantage is real.** Companies that invest in GEO now will
 capture the AI search channel before competitors do.
 
-### Your Current Position
+### 你当前的位置（基线）
 
 | Metric | [COMPANY] | Industry Average | Top Performers |
 |--------|-----------|------------------|----------------|
@@ -165,7 +165,7 @@ capture the AI search channel before competitors do.
 
 ---
 
-## Our Solution: Service Packages
+## 我们的服务方案（分档交付）
 
 We offer three engagement models based on the scope of optimization needed.
 
@@ -187,15 +187,15 @@ We offer three engagement models based on the scope of optimization needed.
 
 ---
 
-### STANDARD — €5,000/month ⭐ Recommended for [COMPANY]
+### STANDARD — €5,000/月 ⭐ 推荐给 [公司/品牌名]
 *Best for: Sites with score 40-60 needing structured monthly work*
 
 **Everything in Basic, plus:**
 - Monthly full GEO audit + delta report
 - Monthly strategy call (60 minutes)
 - Content citability optimization (up to 10 pages/month)
-- Brand authority building (Wikipedia, Wikidata, LinkedIn optimization)
-- Platform-specific optimization (Google AIO, ChatGPT, Perplexity)
+- 品牌权威/实体信号建设（百度百科/公众号/小红书/知乎/B站等 + 垂直平台）
+- 平台专项优化（豆包/元宝/通义千问/百度 AI 搜索；可选含海外平台）
 - E-E-A-T improvements (author pages, credentials, freshness signals)
 - Slack channel for fast communication (24-hour response)
 
@@ -204,14 +204,14 @@ We offer three engagement models based on the scope of optimization needed.
 
 ---
 
-### PREMIUM — €9,500/month
+### PREMIUM — €9,500/月
 *Best for: Sites with score 0-40 with critical issues, or competitive industries*
 
 **Everything in Standard, plus:**
 - Bi-weekly strategy calls
 - Technical SEO implementation support (Core Web Vitals, SSR, speed)
 - Full content strategy + production (4 optimized articles/month)
-- Active brand building (Reddit, YouTube, industry citations)
+- 主动品牌建设（中文互联网生态 + 行业垂直平台的第三方背书/引用）
 - Competitor monitoring and response
 - Dedicated account manager
 - Priority support (4-hour response)
@@ -329,11 +329,11 @@ are based on current industry best practices for Generative Engine Optimization.
 2. Update prospect record: set `status` to `proposal`, save `proposal_file` path
 3. Print confirmation:
    ```
-   ✓ Proposal generated: ~/.geo-prospects/proposals/electron-srl.com-proposal-2026-03-12.md
-   ✓ Prospect status updated: Qualified → Proposal
-   ✓ Recommended package: STANDARD (€5,000/month) — Score 32/100
+   ✓ 已生成方案：~/.geo-prospects/proposals/electron-srl.com-proposal-2026-03-12.md
+   ✓ 已更新线索状态：Qualified → Proposal
+   ✓ 推荐档位：STANDARD（€5,000/月）— 评分 32/100
 
-   Next: Share the proposal file or run `/geo report-pdf` for a visual version.
+   下一步：将方案文件发送给客户，或运行 `/geo report-pdf` 生成可视化 PDF 版本。
    ```
 
 ## Pricing Recommendation Logic

@@ -13,6 +13,11 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 AI search platforms do not just find content — they evaluate whether content deserves to be cited. The primary framework for this evaluation is **E-E-A-T** (Experience, Expertise, Authoritativeness, Trustworthiness), which per Google's December 2025 Quality Rater Guidelines update now applies to **ALL competitive queries**, not just YMYL (Your Money Your Life) topics. Content that scores high on E-E-A-T is dramatically more likely to be cited by AI platforms.
 
+## China-First Requirements
+
+- **Output language**: All final user-facing outputs MUST be in Simplified Chinese (zh-CN).
+- **Signals to prioritize in CN**: 公众号/视频号作者署名与资质、可验证的资质/合规信息、第三方背书、以及中文互联网可检索的“事实口径一致性”（官网 vs 百科/社媒/垂直平台）。
+
 This skill evaluates content through two lenses:
 1. **E-E-A-T signals** — does the content demonstrate real expertise and trust?
 2. **AI citability** — is the content structured so AI platforms can extract and cite specific claims?
@@ -281,65 +286,65 @@ Topical authority measures whether a site comprehensively covers a topic rather 
 Generate **GEO-CONTENT-ANALYSIS.md** with:
 
 ```markdown
-# GEO Content Quality & E-E-A-T Analysis — [Domain]
-Date: [Date]
+# 内容质量与 E-E-A-T 分析报告（CN 优先）— [Domain]
+日期： [Date]
 
-## Content Score: XX/100
+## 内容分数： XX/100
 
-## E-E-A-T Breakdown
-| Dimension | Score | Key Finding |
+## E-E-A-T 拆解
+| 维度 | 分数 | 关键证据/发现 |
 |---|---|---|
-| Experience | XX/25 | [One-line summary] |
-| Expertise | XX/25 | [One-line summary] |
-| Authoritativeness | XX/25 | [One-line summary] |
-| Trustworthiness | XX/25 | [One-line summary] |
+| 经验（Experience） | XX/25 | [一句话总结] |
+| 专业性（Expertise） | XX/25 | [一句话总结] |
+| 权威性（Authoritativeness） | XX/25 | [一句话总结] |
+| 可信度（Trustworthiness） | XX/25 | [一句话总结] |
 
-## Topical Authority Modifier: [+10 to -5]
+## 主题权威修正项： [+10 到 -5]
 
-## Pages Analyzed
-| Page | Word Count | Readability | Heading Structure | Citability Rating |
+## 抽样页面
+| 页面 | 字数 | 可读性 | 标题结构 | 可引用性评级 |
 |---|---|---|---|---|
 | [URL] | [Count] | [Score] | [Pass/Warn/Fail] | [High/Medium/Low] |
 
-## E-E-A-T Detailed Findings
+## E-E-A-T 详细发现
 
-### Experience
+### 经验（Experience）
 [Specific passages and pages with strong/weak experience signals]
 
-### Expertise
+### 专业性（Expertise）
 [Author credentials found, technical depth assessment, specific gaps]
 
-### Authoritativeness
+### 权威性（Authoritativeness）
 [External validation found, topical authority assessment, gaps]
 
-### Trustworthiness
+### 可信度（Trustworthiness）
 [Trust signals present/missing, accuracy concerns if any]
 
-## Content Quality Issues
+## 内容质量问题
 [Specific passages flagged with reasons and rewrite suggestions]
 
-## AI Content Concerns
+## AI 内容风险信号（仅描述“迹象”，不要武断断言）
 [Any low-quality AI content patterns detected, with specific examples]
 
-## Freshness Assessment
-| Page | Published | Last Updated | Status |
+## 新鲜度评估
+| 页面 | 发布日期 | 最后更新 | 状态 |
 |---|---|---|---|
 | [URL] | [Date] | [Date] | [Current/Stale/No Date] |
 
-## Citability Assessment
-### Most Citable Passages
+## 可引用性评估
+### 最容易被引用的段落
 [Top 5 passages that AI platforms are most likely to cite, with reasons]
 
-### Least Citable Pages
+### 最不容易被引用的页面
 [Pages with lowest citability, with specific improvement recommendations]
 
-## Improvement Recommendations
-### Quick Wins
+## 优化建议
+### 速效项（本周）
 [Specific content changes that can be made immediately]
 
-### Content Gaps
+### 内容缺口（应补哪些主题/子主题）
 [Topics the site should cover to strengthen topical authority]
 
-### Author/E-E-A-T Improvements
+### 作者与 E-E-A-T 强化
 [Specific steps to strengthen E-E-A-T signals]
 ```

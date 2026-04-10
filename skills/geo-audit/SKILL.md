@@ -14,11 +14,26 @@ allowed-tools:
 
 ## Purpose
 
-This skill performs a comprehensive Generative Engine Optimization (GEO) audit of any website. GEO is the practice of optimizing web content so that AI systems (ChatGPT, Claude, Perplexity, Gemini, etc.) can discover, understand, cite, and recommend it. This audit measures how well a site performs across all GEO dimensions and produces an actionable improvement plan.
+This skill performs a comprehensive Generative Engine Optimization (GEO) + traditional SEO audit of any website, with a **China-first** focus.
+
+In this repo, GEO means optimizing content so that **AI assistants and AI search products commonly used in the Chinese internet** can discover, understand, verify, cite, and recommend it (e.g. **豆包 / 元宝 / 通义千问 / Kimi / DeepSeek / 百度 AI 搜索**). Traditional SEO checks remain important as foundational infrastructure.
 
 ## Key Insight
 
 Traditional SEO optimizes for search engine rankings. GEO optimizes for AI citation and recommendation. Sites that score high on GEO metrics see 30-115% more visibility in AI-generated responses (Georgia Tech / Princeton / IIT Delhi 2024 study). The two disciplines overlap but have distinct requirements.
+
+## Operating Constraints (CN-First)
+
+- **Primary platforms to optimize for (CN)**: 豆包（字节）、元宝（腾讯）、通义千问（阿里）、Kimi、DeepSeek、百度 AI 搜索（含 AI 摘要/智能结果）
+- **Secondary/global platforms (lower weight)**: ChatGPT, Claude, Gemini, Perplexity, Bing Copilot (still relevant for outbound / overseas markets)
+- **Primary social/content ecosystems (CN)**: 微信公众号/视频号/搜一搜、小红书、抖音、快手、B站、知乎、微博、百度百科、百度知道、贴吧
+- **Vertical platforms (select by industry)**:
+  - Local life: 美团/大众点评、高德/百度地图
+  - E-commerce: 淘宝/天猫、京东、拼多多、1688
+  - B2B/enterprise: 阿里云/腾讯云市场、钉钉生态、企查查/天眼查（实体校验）
+  - Knowledge/tech: CSDN、掘金、博客园
+
+**All final user-facing outputs produced by this skill MUST be in Simplified Chinese (zh-CN)**, even though this skill specification is written in English. Global platforms (ChatGPT/Claude/Gemini/Perplexity/Bing) may be included as an optional appendix.
 
 ---
 
@@ -89,12 +104,13 @@ Delegate analysis to 5 specialized subagents. Each subagent operates on the coll
 **Subagent 1: AI Visibility Analysis (geo-ai-visibility)**
 - Analyze content blocks for quotability by AI systems (citability scoring)
 - Check AI crawler access via robots.txt and llms.txt presence
-- Scan brand presence across YouTube, Reddit, Wikipedia, LinkedIn
-- Score brand authority signals that AI models use for entity recognition
+- Scan brand presence across **CN ecosystems** (Baike, WeChat, Xiaohongshu, Douyin, Bilibili, Zhihu, Weibo) plus selected vertical directories
+- Score brand/entity authority signals used for entity recognition and verification in CN contexts
 
 **Subagent 2: Platform Optimization (geo-platform-analysis)**
-- Assess readiness for Google AI Overviews, ChatGPT, Perplexity, Gemini, Bing Copilot
-- Check platform-specific ranking factors and optimization opportunities
+- Assess readiness for **豆包 / 元宝 / 通义千问 / 百度 AI 搜索 / Kimi / DeepSeek**
+- Optionally include global platforms at lower weight
+- Check platform-specific retrieval and citation patterns and optimization opportunities
 
 **Subagent 3: Technical GEO Infrastructure (geo-technical)**
 - Analyze robots.txt for AI crawler access
@@ -174,7 +190,7 @@ Every issue found during the audit is classified by severity:
 - Content blocks average under 50 citability score
 - Missing FAQ schema on pages with FAQ content
 - Thin author bios without credentials
-- No Wikipedia or Reddit brand presence
+- Weak CN entity verification footprint (e.g., missing Baike / official WeChat / consistent profiles)
 
 ### Low (Optimize When Possible)
 - Minor schema validation errors
@@ -182,7 +198,7 @@ Every issue found during the audit is classified by severity:
 - Content freshness issues on non-critical pages
 - Missing Open Graph tags
 - Suboptimal heading hierarchy on some pages
-- LinkedIn company page exists but is incomplete
+- Official CN social profiles exist but are incomplete / inconsistent (bio, naming, links)
 
 ---
 
@@ -191,22 +207,22 @@ Every issue found during the audit is classified by severity:
 Generate a file called `GEO-AUDIT-REPORT.md` with the following structure:
 
 ```markdown
-# GEO Audit Report: [Site Name]
+# GEO 审计报告（CN 优先）：[站点/品牌名]
 
-**Audit Date:** [Date]
-**URL:** [URL]
-**Business Type:** [Detected Type]
-**Pages Analyzed:** [Count]
+**审计日期：** [Date]
+**URL：** [URL]
+**业务类型：** [Detected Type]
+**抽样页面数：** [Count]
 
 ---
 
-## Executive Summary
+## 执行摘要
 
-**Overall GEO Score: [X]/100 ([Rating])**
+**总体 GEO 评分： [X]/100（[评级]）**
 
-[2-3 sentence summary of the site's GEO health, biggest strengths, and most critical gaps.]
+[用 2-3 句话概括：现状、最大优势、最关键缺口。]
 
-### Score Breakdown
+### 分数拆解
 
 | Category | Score | Weight | Weighted Score |
 |---|---|---|---|
@@ -220,47 +236,47 @@ Generate a file called `GEO-AUDIT-REPORT.md` with the following structure:
 
 ---
 
-## Critical Issues (Fix Immediately)
+## 严重问题（立刻修复）
 
-[List each critical issue with specific page URLs and recommended fix]
+[逐条列出：问题、影响、涉及 URL、建议修复方式。]
 
-## High Priority Issues
+## 高优先级问题（1 周内）
 
-[List each high-priority issue with details]
+[逐条列出：问题、影响、涉及 URL、建议修复方式。]
 
-## Medium Priority Issues
+## 中优先级问题（1 个月内）
 
-[List each medium-priority issue]
+[逐条列出。]
 
-## Low Priority Issues
+## 低优先级问题（有余力再优化）
 
-[List each low-priority issue]
+[逐条列出。]
 
 ---
 
-## Category Deep Dives
+## 分维度深挖
 
-### AI Citability ([X]/100)
+### AI 可引用性（[X]/100）
 [Detailed findings, examples of good/bad passages, rewrite suggestions]
 
-### Brand Authority ([X]/100)
+### 品牌权威/实体信号（[X]/100）
 [Platform presence map, mention volume, sentiment]
 
-### Content E-E-A-T ([X]/100)
+### 内容质量与 E-E-A-T（[X]/100）
 [Author quality, source citations, freshness, depth]
 
-### Technical GEO ([X]/100)
+### 技术基础（[X]/100）
 [Crawler access, llms.txt, rendering, headers]
 
-### Schema & Structured Data ([X]/100)
+### Schema 与结构化数据（[X]/100）
 [Schema types found, validation results, missing opportunities]
 
-### Platform Optimization ([X]/100)
-[Presence on YouTube, Reddit, Wikipedia, etc.]
+### 平台就绪度（[X]/100）
+[重点覆盖：豆包/元宝/千问/百度 AI 搜索/Kimi/DeepSeek；可选补充海外平台。]
 
 ---
 
-## Quick Wins (Implement This Week)
+## 本周速效项（Quick Wins）
 
 1. [Specific, actionable quick win with expected impact]
 2. [Another quick win]
@@ -268,27 +284,27 @@ Generate a file called `GEO-AUDIT-REPORT.md` with the following structure:
 4. [Another quick win]
 5. [Another quick win]
 
-## 30-Day Action Plan
+## 30 天行动计划
 
-### Week 1: [Theme]
+### 第 1 周：[主题]
 - [ ] Action item 1
 - [ ] Action item 2
 
-### Week 2: [Theme]
+### 第 2 周：[主题]
 - [ ] Action item 1
 - [ ] Action item 2
 
-### Week 3: [Theme]
+### 第 3 周：[主题]
 - [ ] Action item 1
 - [ ] Action item 2
 
-### Week 4: [Theme]
+### 第 4 周：[主题]
 - [ ] Action item 1
 - [ ] Action item 2
 
 ---
 
-## Appendix: Pages Analyzed
+## 附录：抽样页面列表
 
 | URL | Title | GEO Issues |
 |---|---|---|

@@ -14,7 +14,11 @@ allowed-tools:
 
 ## Purpose
 
-This skill analyzes a website's accessibility to AI crawlers -- the bots that AI companies use to discover, index, and train on web content. If AI crawlers are blocked, the site's content cannot appear in AI-generated responses regardless of its quality. Crawler access is the foundational technical requirement for GEO.
+This skill analyzes a website's accessibility to AI crawlers — the bots AI companies use to discover, index, and (sometimes) train on web content. If AI crawlers are blocked, the site's content cannot appear in AI-generated responses regardless of quality. Crawler access is the foundational technical requirement for GEO.
+
+**China-first requirement:** This repo prioritizes CN AI assistants and CN ecosystems. The crawler reference and recommendations below must explicitly cover **ByteDance / Tencent / Alibaba / Baidu** AI discovery surfaces, while keeping global crawlers as secondary.
+
+**All final user-facing outputs MUST be in Simplified Chinese (zh-CN)**.
 
 ## Key Insight
 
@@ -22,11 +26,13 @@ As of early 2026, many websites inadvertently block AI crawlers through overly a
 
 ---
 
-## Complete AI Crawler Reference
+## AI Crawler Reference (CN-first)
 
-### Tier 1: Critical for AI Search Visibility (RECOMMEND: ALLOW)
+### Tier 1: Critical for CN AI visibility (RECOMMEND: ALLOW by default)
 
-These crawlers power the AI search products where users actively look for answers. Blocking them directly reduces your visibility in AI-generated responses.
+These crawlers power AI assistants / AI search products where users actively seek answers in CN environments. Blocking them directly reduces visibility in AI-generated responses.
+
+> Note: CN platforms frequently change public bot documentation and may use multiple user-agents. When a CN crawler user-agent cannot be confidently verified, treat it as **"Unverified — requires manual confirmation"** rather than hallucinating a user-agent string.
 
 #### GPTBot
 - **Operator:** OpenAI
@@ -135,8 +141,8 @@ These crawlers are primarily used for AI model training rather than live search 
 - **Operator:** ByteDance
 - **User-Agent:** `Bytespider`
 - **Purpose:** Used by ByteDance for various AI products including TikTok's AI features and Doubao (their ChatGPT competitor in China).
-- **Impact of Blocking:** Content will not be used for ByteDance AI products. Minimal impact for Western-market businesses.
-- **Recommendation:** **BLOCK** for most Western businesses (aggressive crawling behavior reported, minimal search visibility benefit). **ALLOW** if targeting Chinese/Asian markets.
+- **Impact of Blocking:** Content may have reduced visibility in ByteDance ecosystems and ByteDance AI experiences.
+- **Recommendation:** **ALLOW** for China-first GEO unless there is a specific crawling load / licensing reason to block. If crawl load is a concern, use rate limiting and path-based controls rather than blanket blocking.
 
 #### cohere-ai
 - **Operator:** Cohere
@@ -163,7 +169,7 @@ These crawlers are primarily used for AI model training rather than live search 
 | FacebookBot | 2 | **ALLOW** | Meta AI (3B+ app users) |
 | CCBot | 3 | Context | Training data only |
 | anthropic-ai | 3 | Context | Training data only |
-| Bytespider | 3 | **BLOCK** | Aggressive crawler, low benefit |
+| Bytespider | 1-3 | **ALLOW (CN-first)** | ByteDance ecosystem visibility (Douyin/Doubao); treat as high value in CN |
 | cohere-ai | 3 | Context | Training data only |
 
 ### Maximum AI Visibility Configuration (robots.txt)
@@ -205,9 +211,9 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
-# AI Crawlers - BLOCKED (aggressive/low value)
+# CN ecosystems (China-first) — allow unless you intentionally block
 User-agent: Bytespider
-Disallow: /
+Allow: /
 
 User-agent: CCBot
 Disallow: /
@@ -272,15 +278,15 @@ Disallow: /
 Generate a file called `GEO-CRAWLER-ACCESS.md`:
 
 ```markdown
-# AI Crawler Access Report: [Domain]
+# AI 爬虫访问报告（CN 优先）：[Domain]
 
-**Analysis Date:** [Date]
-**Domain:** [Domain]
-**robots.txt Status:** [Found/Not Found/Error]
+**分析日期：** [Date]
+**域名：** [Domain]
+**robots.txt 状态：** [Found/Not Found/Error]
 
 ---
 
-## Crawler Access Summary
+## 爬虫访问摘要
 
 | Crawler | Operator | Tier | Status | Impact |
 |---|---|---|---|---|
@@ -299,7 +305,7 @@ Generate a file called `GEO-CRAWLER-ACCESS.md`:
 | Bytespider | ByteDance | 3 | [Status] | [Impact] |
 | cohere-ai | Cohere | 3 | [Status] | [Impact] |
 
-## AI Visibility Score: [X]/100
+## AI 可见度分数： [X]/100
 
 **Tier 1 Access:** [X/5 crawlers allowed]
 **Tier 2 Access:** [X/5 crawlers allowed]
@@ -307,21 +313,21 @@ Generate a file called `GEO-CRAWLER-ACCESS.md`:
 
 ---
 
-## Critical Issues
+## 严重问题
 
 [List any Tier 1 crawlers that are blocked]
 
-## Recommendations
+## 建议
 
-### Immediate Actions
+### 立刻执行
 [Specific robots.txt changes needed]
 
-### robots.txt Recommendation
+### robots.txt 推荐配置
 ```
 [Complete recommended robots.txt content for AI crawlers]
 ```
 
-### Additional Technical Findings
+### 其他技术发现
 - **Meta Robots Tags:** [Findings]
 - **X-Robots-Tag Headers:** [Findings]
 - **JavaScript Rendering:** [Assessment]

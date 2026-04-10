@@ -12,6 +12,12 @@ allowed-tools:
 
 # AI Citability Scoring Skill
 
+## China-First Requirements
+
+- **Output language**: All final user-facing outputs MUST be in Simplified Chinese (zh-CN).
+- **Primary AI platforms (CN)**: 豆包、元宝、通义千问、Kimi、DeepSeek、百度 AI 搜索
+- **Secondary/global platforms (optional)**: ChatGPT, Claude, Gemini, Perplexity, Bing Copilot
+
 ## Core Insight
 
 AI language models cite passages that meet specific structural criteria. Research from Princeton, Georgia Tech, and IIT Delhi (2024) found that GEO-optimized content achieves 30-115% higher visibility in AI-generated responses. The key finding: AI systems preferentially extract and cite passages that are **134-167 words long**, **self-contained** (understandable without surrounding context), **fact-rich** (containing specific statistics, dates, or named entities), and **directly answer a question** in the first 1-2 sentences.
@@ -223,16 +229,16 @@ For each block scoring below 60, generate a specific rewrite suggestion:
 Generate a file called `GEO-CITABILITY-SCORE.md`:
 
 ```markdown
-# AI Citability Analysis: [Page Title]
+# AI 可引用性分析报告（CN 优先）：[页面标题]
 
-**URL:** [URL]
-**Analysis Date:** [Date]
-**Overall Citability Score: [X]/100**
-**Citability Coverage:** [X]% of content blocks score above 70
+**URL：** [URL]
+**分析日期：** [Date]
+**总体可引用性评分：** [X]/100
+**覆盖率：** [X]% 内容块评分 ≥ 70
 
 ---
 
-## Score Summary
+## 分数概览
 
 | Category | Score | Weight | Weighted |
 |---|---|---|---|
@@ -245,12 +251,12 @@ Generate a file called `GEO-CITABILITY-SCORE.md`:
 
 ---
 
-## Strongest Content Blocks
+## 最强内容块（最容易被 AI 直接引用）
 
 ### 1. "[Heading]" -- Score: [X]/100
 > [First 2 sentences of the block]
 
-**Why it works:** [Explanation]
+**为什么好：** [解释：答案前置/自洽/事实密度/结构清晰等]
 
 ### 2. "[Heading]" -- Score: [X]/100
 > [First 2 sentences of the block]
@@ -259,26 +265,26 @@ Generate a file called `GEO-CITABILITY-SCORE.md`:
 
 ---
 
-## Weakest Content Blocks (Rewrite Priority)
+## 最弱内容块（优先重写）
 
 ### 1. "[Heading]" -- Score: [X]/100
 
-**Current opening:**
+**当前开头：**
 > [First 2 sentences as they exist]
 
-**Problem:** [Specific issue -- buried answer, no facts, etc.]
+**问题：** [具体问题：答案埋太深/缺事实/结构差/不自洽等]
 
-**Suggested rewrite:**
+**建议改写（示例开头 2-3 句）：**
 > [Rewritten opening 2-3 sentences with answer-first pattern and facts]
 
-**Additional improvements:**
+**额外优化：**
 - [Add table comparing X, Y, Z]
 - [Include statistic about ...]
 - [Split long paragraph into 2-3 shorter ones]
 
 ---
 
-## Quick Win Reformatting Recommendations
+## 本周可落地的速效改造（Quick Wins）
 
 1. **[Specific recommendation]** -- Expected citability lift: +[X] points
 2. **[Specific recommendation]** -- Expected citability lift: +[X] points
@@ -288,7 +294,7 @@ Generate a file called `GEO-CITABILITY-SCORE.md`:
 
 ---
 
-## Per-Section Scores
+## 分章节评分
 
 | Section Heading | Words | Answer Quality | Self-Contained | Structure | Stats | Unique | Overall |
 |---|---|---|---|---|---|---|---|
@@ -312,8 +318,7 @@ Generate a file called `GEO-CITABILITY-SCORE.md`:
 
 | AI System | Citation Preference |
 |---|---|
-| **ChatGPT (Search)** | Prefers passages with explicit definitions, named sources, and recent dates. Tends to cite 2-4 sources per response. |
-| **Perplexity** | Heavily favors fact-dense passages with statistics. Cites 4-8 sources per response. Values recency highly. |
-| **Claude** | Prefers well-structured, comprehensive passages. Values nuance and accuracy over brevity. |
-| **Gemini (AI Overviews)** | Prefers concise answer blocks (40-60 words). Values content already ranking in top 10 organic results. |
-| **Copilot (Bing)** | Similar to Gemini. Prefers passages from high-authority domains with clear factual claims. |
+| **豆包 / 元宝 / 通义千问** | 偏好“可直接复述/可验证”的结构：定义句 + 参数/价格口径 + FAQ + 对比表 + 案例；更容易引用短而自洽的事实段落。 |
+| **百度 AI 搜索** | 偏好结构清晰、标题与问题强匹配、事实密度高且可验证的内容块；对站内结构化（表格/列表/FAQ）更友好。 |
+| **Kimi / DeepSeek** | 偏好信息密度高、逻辑清晰、来源明确的段落；对“术语定义 + 例子 + 边界条件”组合更容易抽取。 |
+| **ChatGPT / Perplexity / Claude / Gemini / Bing Copilot（可选）** | 如需做海外/出海业务，再补充这些平台的偏好；默认不作为 CN 优先评分的核心约束。 |

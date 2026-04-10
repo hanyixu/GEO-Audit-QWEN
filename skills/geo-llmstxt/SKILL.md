@@ -16,6 +16,12 @@ allowed-tools:
 
 This skill handles everything related to the `llms.txt` standard -- an emerging convention (proposed by Jeremy Howard in September 2024, gaining adoption through 2025-2026) that allows websites to provide structured guidance to AI systems about their content, structure, and key information. It is analogous to `robots.txt` (which tells crawlers what NOT to access) but instead tells AI systems what IS most useful to understand about the site.
 
+## China-First Requirements
+
+- **Output language**: All final user-facing outputs MUST be in Simplified Chinese (zh-CN).
+- **Content selection**: Prefer pages that match CN search intent patterns (对比/避坑/价格/售后/参数/案例/资质/合规) and CN distribution channels.
+- **Section naming**: Use CN-friendly sections when generating llms.txt (e.g., `## 产品/服务`, `## 价格`, `## 解决方案`, `## 案例`, `## 指南/教程`, `## FAQ`, `## 关于我们`, `## 联系方式`, `## 合规/资质`).
+
 ## Why llms.txt Matters
 
 AI language models face a fundamental challenge when processing websites: they must determine which pages are most important, what the site is about, and how content is organized -- typically by crawling many pages and inferring structure. `llms.txt` solves this by providing an explicit, machine-readable (and human-readable) summary.
@@ -44,18 +50,21 @@ https://example.com/llms.txt
 The file uses Markdown formatting with specific conventions:
 
 ```markdown
-# [Site Name]
+# [网站/品牌名称]
 
-> [One-sentence description of what the site/business does. Keep under 200 characters.]
+> [一句话说明你是谁、做什么、服务谁。尽量控制在 200 个中文字符以内，事实表达，少口号。]
 
-## Docs
+## 产品/服务
 
-- [Page Title](https://example.com/page-url): Concise description of what this page covers and why it matters.
-- [Another Page](https://example.com/another-page): Description of content.
+- [核心产品页](https://example.com/product): 说明这页包含哪些核心信息（功能/适用场景/价格口径/参数等）。
 
-## Optional
+## 指南/教程
 
-- [Less Critical Page](https://example.com/optional-page): Description.
+- [入门指南](https://example.com/guide): 覆盖的关键问题、步骤、注意事项。
+
+## FAQ
+
+- [常见问题](https://example.com/faq): 价格、售后、保修、对比、适配等高意图问题的答案集合。
 ```
 
 ### Detailed Format Rules
@@ -357,15 +366,15 @@ Before outputting:
 Generate `GEO-LLMSTXT-ANALYSIS.md`:
 
 ```markdown
-# llms.txt Analysis: [Domain]
+# llms.txt 分析报告（CN 优先）：[Domain]
 
-**Analysis Date:** [Date]
-**llms.txt Status:** [Found at URL / Not Found / Error]
-**llms-full.txt Status:** [Found / Not Found]
+**分析日期：** [Date]
+**llms.txt 状态：** [Found at URL / Not Found / Error]
+**llms-full.txt 状态：** [Found / Not Found]
 
 ---
 
-## Overall llms.txt Score: [X]/100
+## llms.txt 总分： [X]/100
 
 | Dimension | Score |
 |---|---|
@@ -375,7 +384,7 @@ Generate `GEO-LLMSTXT-ANALYSIS.md`:
 
 ---
 
-## Format Validation
+## 格式校验
 
 | Element | Status | Notes |
 |---|---|---|
@@ -390,31 +399,31 @@ Generate `GEO-LLMSTXT-ANALYSIS.md`:
 
 ---
 
-## Missing Pages
+## 重要页面缺失清单
 
 These important pages were found on the site but not in llms.txt:
 
 1. [Page Title](URL) -- [Why it should be included]
 2. [Page Title](URL) -- [Why it should be included]
 
-## Improvement Recommendations
+## 优化建议（按优先级）
 
 1. [Specific recommendation]
 2. [Specific recommendation]
 3. [Specific recommendation]
 
-## Suggested Updated llms.txt
+## 建议的 llms.txt（可直接替换上线）
 
 [Complete rewritten llms.txt file if significant improvements are needed]
 ```
 
 ### For Generation Mode
 
-Output the complete `llms.txt` file content, ready to be saved to the site's root directory. Also output a brief `GEO-LLMSTXT-GENERATION.md` report explaining:
-- How many pages were discovered and how many were selected
-- The prioritization rationale
-- Any pages that were borderline (might add later)
-- Recommended update frequency (e.g., monthly for active blogs, quarterly for stable sites)
+Output the complete `llms.txt` file content (in Chinese), ready to be saved to the site's root directory. Also output a brief `GEO-LLMSTXT-GENERATION.md` report (Chinese) explaining:
+- 发现了多少页面、最终选择了多少页面
+- 选择与排序依据（为什么这些页最值得 AI 先读）
+- 边界页面（可后续补充）
+- 推荐更新频率（内容站可按月；稳定官网可按季度或版本发布后更新）
 
 ---
 

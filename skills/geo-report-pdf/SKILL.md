@@ -13,6 +13,11 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 This skill generates a professional, visually polished PDF report from GEO audit data. The PDF includes score gauges, bar charts, platform readiness visualizations, color-coded tables, and a prioritized action plan — ready to deliver directly to clients.
 
+## China-First Requirements
+
+- **Output language**: The PDF content (titles, executive summary, findings, action plan) MUST be in Simplified Chinese (zh-CN).
+- **Platforms**: Use CN-first platform keys when building JSON (豆包/元宝/通义千问/百度AI/Kimi/DeepSeek). Keep global platforms as optional add-ons.
+
 ## Prerequisites
 
 - **ReportLab** must be installed: `pip install reportlab`
@@ -40,35 +45,35 @@ After running a full `/geo-audit`, collect all scores, findings, and recommendat
         "platform_optimization": 59
     },
     "platforms": {
-        "Google AI Overviews": 68,
-        "ChatGPT": 62,
-        "Perplexity": 55,
-        "Gemini": 60,
-        "Bing Copilot": 50
+        "豆包": 68,
+        "元宝": 62,
+        "通义千问": 55,
+        "百度 AI 搜索": 60,
+        "Kimi/DeepSeek（如适用）": 50
     },
-    "executive_summary": "A 4-6 sentence summary of the audit findings...",
+    "executive_summary": "用中文写 4-6 句执行摘要，面向业务负责人，强调结论与优先级。",
     "findings": [
         {
             "severity": "critical",
             "title": "Finding Title",
-            "description": "Description of the finding and its impact."
+            "description": "用中文说明问题本质、影响与建议修复动作。"
         }
     ],
     "quick_wins": [
-        "Action item 1",
-        "Action item 2"
+        "用中文写的速效项 1",
+        "用中文写的速效项 2"
     ],
     "medium_term": [
-        "Action item 1",
-        "Action item 2"
+        "用中文写的中期项 1",
+        "用中文写的中期项 2"
     ],
     "strategic": [
-        "Action item 1",
-        "Action item 2"
+        "用中文写的战略项 1",
+        "用中文写的战略项 2"
     ],
     "crawler_access": {
-        "GPTBot": {"platform": "ChatGPT", "status": "Allowed", "recommendation": "Keep allowed"},
-        "ClaudeBot": {"platform": "Claude", "status": "Blocked", "recommendation": "Unblock for visibility"}
+        "Bytespider": {"platform": "字节生态", "status": "Allowed", "recommendation": "CN 优先建议保持允许（如无明确原因不要全站屏蔽）"},
+        "Baiduspider": {"platform": "百度", "status": "Allowed", "recommendation": "保持允许并确保 sitemap 可访问"}
     }
 }
 ```

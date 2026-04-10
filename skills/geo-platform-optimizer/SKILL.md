@@ -7,50 +7,52 @@ tags: [geo, ai-search, platform-optimization, china, yuanbao, doubao, qwen]
 allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 ---
 
-# GEO 平台优化（中国环境）
+# GEO Platform Optimization (China-First)
 
-## 核心洞察
+## Core Insight
 
-在中国环境下，AI 助手/AI 搜索平台的“来源偏好”和“分发生态”差异更大：\n
-同一页面在不同平台可能表现完全不同。平台级 GEO 不是可选项，而是基础。
+In the Chinese internet, AI assistants / AI search products differ significantly in **source preferences** and **distribution ecosystems**.
+The same page can perform very differently across platforms. Platform-level GEO is not optional — it is foundational.
 
-本技能围绕三大中国 AI 平台给出检查清单与评分模型：
+This skill provides checklists and scoring models for the major CN platforms:
 - **元宝（腾讯生态）**
 - **豆包（字节生态）**
 - **千问（阿里生态）**
 
-> 说明：不同平台的具体抓取/索引策略可能变化。本技能以“可验证信号 + 内容可引用性 + 生态一致性”作为稳健基线。
+> Note: Platform crawling/indexing policies can change. This skill uses a robust baseline: **verifiable signals + citability + ecosystem consistency**.
+
+**All final user-facing outputs MUST be in Simplified Chinese (zh-CN)**.
 
 ---
 
-## 使用方式
+## How to Use
 
-1. 收集目标 URL + 行业/品类 + 业务类型（ToC/ToB/本地生活/电商/SaaS）
-2. 按平台清单评估站点与外部信号
-3. 给出每个平台 0-100 评分 + 缺口 + 可执行动作
-4. 生成 `GEO-PLATFORM-OPTIMIZATION.md`
+1. Collect target URL + industry/category + business type (ToC/ToB/Local Life/E-commerce/SaaS)
+2. Evaluate site signals and off-site ecosystem signals per platform checklist
+3. Produce per-platform scores (0-100) + gaps + concrete actions
+4. Generate `GEO-PLATFORM-OPTIMIZATION.md` in Chinese
 
 ---
 
-## 平台 1：元宝（腾讯生态）
+## Platform 1: 元宝（Tencent ecosystem）
 
-### 来源与生态假设（实务导向）
+### Source & ecosystem assumptions (practical)
 
-腾讯生态的可验证信号常来自：
+Common verifiable signals in Tencent ecosystem:
 - **微信公众号/视频号**（内容沉淀与可复用引用段落）
 - **搜一搜**可检索性（标题、摘要、结构清晰度）
 - **权威机构/媒体**的第三方背书（可验证性与信任）
 
-### 优化清单
+### Optimization checklist
 
-1. **公众号内容沉淀**：至少 10 篇“可引用长文”覆盖：品牌/产品定义、FAQ、对比、案例、参数与价格口径。\n
-2. **问答式结构**：用 H2/H3 问题标题，紧跟 1-2 句“直接回答”，再展开细节。\n
-3. **可引用内容块**：每个核心主题准备 2-3 段 100-180 字的事实密度段落（可独立理解）。\n
-4. **一致性（实体口径）**：官网、公众号、百科、社媒的品牌名、主体信息、联系方式一致。\n
-5. **sameAs 完整**：官网 Schema `Organization`/`LocalBusiness` 的 `sameAs` 补齐公众号/视频号/微博/知乎/小红书/抖音等入口（若已存在）。\n
-6. **更新与作者**：重点页面显示“发布日期 + 更新日期 + 作者/编辑 + 资质/来源”。\n
+1. **WeChat long-form deposits**: Publish 10+ citable long articles covering brand/product definitions, FAQ, comparisons, cases, specs, and pricing positioning.
+2. **Q&A structure**: Use question headings (H2/H3), then 1–2 sentence direct answers, then details.
+3. **Citable blocks**: For each core topic, prepare 2–3 blocks of 100–180 Chinese characters, fact-dense and self-contained.
+4. **Entity consistency**: Website, WeChat, Baike, social profiles share consistent naming, entity info, and contacts.
+5. **sameAs completeness**: Add WeChat/Channels/Weibo/Zhihu/XHS/Douyin links into `Organization`/`LocalBusiness` schema `sameAs` where applicable.
+6. **Freshness + authorship**: Show publish date, updated date, author/editor, credentials, and sources on key pages.
 
-### 评分（0-100）
+### Scoring (0-100)
 
 | 维度 | 分值 | 评分方法 |
 |---|---:|---|
@@ -63,25 +65,25 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 ---
 
-## 平台 2：豆包（字节生态）
+## Platform 2: 豆包（ByteDance ecosystem）
 
-### 来源与生态假设（实务导向）
+### Source & ecosystem assumptions (practical)
 
-字节生态的强信号通常来自：
+Strong signals in ByteDance ecosystem often come from:
 - **抖音**（短视频：教程/对比/测评/清单）
 - **图文与短内容分发**（标题与摘要的关键词覆盖）
 - **讨论与复述**（第三方测评与用户口碑内容）
 
-### 优化清单
+### Optimization checklist
 
-1. **视频内容矩阵**：教程/对比/清单/避坑四类内容，标题包含“品类词 + 品牌词”。\n
-2. **字幕关键词**：字幕/口播明确给出参数、结论、适用场景（便于被摘录）。\n
-3. **视频简介信息卡**：统一提供官网、客服、核心产品页、FAQ 链接。\n
-4. **UGC 与第三方测评**：引导真实用户体验分享（注意合规），优先形成“对比/测评/案例”类第三方内容。\n
-5. **站内外一致性**：视频中的品牌词、产品名、版本/价格口径，与官网保持一致。\n
-6. **落地页可引用**：从短视频导流的落地页必须有“直接答案 + 结构化信息（表格/列表）”。\n
+1. **Video matrix**: Tutorials / comparisons / checklists / “pitfalls to avoid”. Titles include “category keyword + brand keyword”.
+2. **Subtitles & spoken facts**: Explicit specs, conclusions, and use-cases (so content can be quoted).
+3. **Bio / link card**: Standardize links to official site, customer support, core landing pages, and FAQ.
+4. **UGC + third-party reviews**: Encourage real user experiences compliantly; prioritize comparison/review/case-style third-party content.
+5. **Consistency**: Names, versions, and pricing positioning match the official site.
+6. **Landing page citability**: Landing pages must have “direct answers + structured info (tables/lists)”.
 
-### 评分（0-100）
+### Scoring (0-100)
 
 | 维度 | 分值 | 评分方法 |
 |---|---:|---|
@@ -94,25 +96,25 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 ---
 
-## 平台 3：千问（阿里生态）
+## Platform 3: 千问（Alibaba ecosystem）
 
-### 来源与生态假设（实务导向）
+### Source & ecosystem assumptions (practical)
 
-阿里生态的可验证信号常来自：
+Common verifiable signals in Alibaba ecosystem:
 - **结构化与可验证事实**（参数、规格、对比表、FAQ、来源引用）
-- **电商/产品信息一致性**（若是电商/品牌）\n
+- **电商/产品信息一致性**（若是电商/品牌）
 - **权威来源引用**（行业协会、标准、媒体、公开信息）
 
-### 优化清单
+### Optimization checklist
 
-1. **产品/服务信息结构化**：把规格、价格区间、适用场景做成表格；对比竞品用对比表。\n
-2. **定义与术语框**：关键概念用“定义句”写法：`**术语**是...`。\n
-3. **数据与来源**：关键结论给出数字/日期，并注明来源（可公开验证）。\n
-4. **FAQ 覆盖**：至少 10 个高意图 FAQ（怎么选/哪个好/靠谱吗/保修/售后/价格/适配）。\n
-5. **实体一致性**：官网与百科/社媒口径一致（名称、主体、联系方式、产品名）。\n
-6. **技术可抓取**：确保 SSR/可读 HTML、合理 robots、站点地图、规范 canonical。\n
+1. **Structured product/service facts**: Put specs, pricing ranges, and use-cases into tables; use comparison tables for competitors.
+2. **Definitions & terminology boxes**: Use definition sentences: `**术语**是...`.
+3. **Verifiable data & sources**: Provide numbers/dates and cite public sources.
+4. **FAQ coverage**: 10+ high-intent FAQs (how to choose, comparison, reliability, warranty, after-sales, price, compatibility).
+5. **Entity consistency**: Website vs Baike/social is consistent (name, entity, contacts, product naming).
+6. **Technical crawlability**: SSR/readable HTML, sane robots, sitemap, canonical correctness.
 
-### 评分（0-100）
+### Scoring (0-100)
 
 | 维度 | 分值 | 评分方法 |
 |---|---:|---|
@@ -125,19 +127,19 @@ allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 ---
 
-## 通用动作（对所有平台都有帮助）
+## Cross-platform actions (helpful everywhere)
 
-1. **实体打底**：百度百科 + 官网“关于我们/资质/联系方式/时间线”完善。\n
-2. **sameAs**：官网 Schema 补齐社媒与内容入口。\n
-3. **可引用内容块**：每个核心主题准备 100-180 字高事实密度段落。\n
-4. **结构化**：表格、列表、FAQ、定义句。\n
-5. **一致性**：品牌词/产品名/版本/价格/售后口径一致。\n
+1. **Entity foundation**: Baidu Baike + complete website “About / credentials / contacts / timeline”.
+2. **sameAs**: Fill `sameAs` links for official social/content presences.
+3. **Citable blocks**: 100–180 Chinese character fact-dense blocks per core topic.
+4. **Structure**: tables, lists, FAQ, definition sentences.
+5. **Consistency**: brand/product/version/pricing/after-sales messaging consistent.
 
 ---
 
-## 输出格式
+## Output Format (Chinese required)
 
-生成 `GEO-PLATFORM-OPTIMIZATION.md`：
+Generate `GEO-PLATFORM-OPTIMIZATION.md` in **中文（简体）**:
 
 ```markdown
 # GEO 平台优化报告（CN）— [Domain]

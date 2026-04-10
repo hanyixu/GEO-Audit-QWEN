@@ -19,6 +19,13 @@ The single most powerful retention tool for a GEO agency: show clients **exactly
 what improved since they started working with you. Every point gained on the GEO
 score is proof of value. This skill generates the "here's your progress" report.
 
+## China-First Requirements
+
+- **Primary AI platforms (CN)**: 豆包、元宝、通义千问、Kimi、DeepSeek、百度 AI 搜索
+- **Secondary/global platforms (lower weight, optional)**: ChatGPT, Claude, Gemini, Perplexity, Bing Copilot
+
+**All final user-facing outputs MUST be in Simplified Chinese (zh-CN)**.
+
 ---
 
 ## Commands
@@ -76,18 +83,18 @@ Output to `~/.geo-prospects/reports/<domain>-monthly-<date>.md`
 Generate the following document:
 
 ```markdown
-# GEO Monthly Progress Report
-## [COMPANY NAME] — [MONTH YEAR]
+# GEO 月度进展报告（CN 优先）
+## [公司/品牌名] — [月份 年份]
 
-**Reporting period:** [BASELINE DATE] → [CURRENT DATE]
-**Prepared by:** [AGENCY NAME]
-**Report reference:** GEO-MONTHLY-[DOMAIN]-[YYMMDD]
+**报告周期：** [BASELINE DATE] → [CURRENT DATE]
+**出品方：** [服务方/机构名]
+**报告编号：** GEO-MONTHLY-[DOMAIN]-[YYMMDD]
 
 ---
 
-## Executive Summary
+## 执行摘要
 
-[2-3 sentences: What improved, what's the trend, what to focus on next month.]
+[用 2-3 句话说明：本月提升点、总体趋势、下月优先聚焦。]
 
 Example: "Electron Srl's GEO Score improved from 32 to 44 this month (+12 points),
 placing the site firmly in the 'Below Average' tier and on track to reach 'Moderate'
@@ -97,21 +104,21 @@ content citability — the highest-weighted remaining gap."
 
 ---
 
-## GEO Score Progress
+## GEO 总分变化
 
 ```
-OVERALL GEO SCORE
+总体 GEO 评分
 
   Baseline   [▓▓▓▓░░░░░░░░░░░░░░░░]  32/100  (Critical)
   Current    [▓▓▓▓▓▓▓▓░░░░░░░░░░░░]  44/100  (Below Average)
   Change     ▲ +12 points (+37.5%)
 
-  Target:    65/100 by Month 6 (on track ✓)
+  目标：     第 6 个月达到 65/100（是否在轨：✓/✗）
 ```
 
 ---
 
-## Score Breakdown: Before vs. After
+## 分项分数：前后对比
 
 | Category | Baseline | Current | Change | Trend |
 |----------|---------|---------|--------|-------|
@@ -125,19 +132,21 @@ OVERALL GEO SCORE
 
 ---
 
-## Platform Readiness: Before vs. After
+## 平台就绪度：前后对比（CN 优先）
 
 | AI Platform | Baseline | Current | Change |
 |-------------|---------|---------|--------|
-| Google AI Overviews | [X]/100 | [X]/100 | [+/-X] |
-| ChatGPT Web Search | [X]/100 | [X]/100 | [+/-X] |
-| Perplexity AI | [X]/100 | [X]/100 | [+/-X] |
-| Google Gemini | [X]/100 | [X]/100 | [+/-X] |
-| Bing Copilot | [X]/100 | [X]/100 | [+/-X] |
+| 豆包 | [X]/100 | [X]/100 | [+/-X] |
+| 元宝 | [X]/100 | [X]/100 | [+/-X] |
+| 通义千问 | [X]/100 | [X]/100 | [+/-X] |
+| 百度 AI 搜索 | [X]/100 | [X]/100 | [+/-X] |
+| Kimi / DeepSeek（如适用） | [X]/100 | [X]/100 | [+/-X] |
+
+> 可选附录（如做出海/海外业务）：ChatGPT / Claude / Gemini / Perplexity / Bing Copilot
 
 ---
 
-## AI Crawler Access Changes
+## AI 爬虫访问变化
 
 | Crawler | Baseline | Current | Change |
 |---------|---------|---------|--------|
@@ -151,9 +160,9 @@ OVERALL GEO SCORE
 
 ---
 
-## Action Plan Progress
+## 行动计划进展
 
-### Quick Wins — Status Update
+### Quick Wins（速效项）— 进展
 
 | # | Action | Assigned | Status | Impact |
 |---|--------|---------|--------|--------|
@@ -163,9 +172,9 @@ OVERALL GEO SCORE
 | 4 | Add author bylines to all articles | Client content | 🔄 In Progress | — |
 | 5 | Fix meta descriptions (47 pages missing) | Client dev | ❌ Not started | — |
 
-**Quick wins completed: [X]/[Y] ([%])**
+**Quick Wins 完成：** [X]/[Y]（[%]）
 
-### Medium-Term — Status Update
+### 中期项（本月）— 进展
 
 | # | Action | Target Month | Status |
 |---|--------|-------------|--------|
@@ -174,7 +183,7 @@ OVERALL GEO SCORE
 | 3 | Register Bing Webmaster Tools | Month 1 | ✅ Done |
 | 4 | Implement IndexNow | Month 2 | 🔄 In Progress |
 
-### Strategic — Status Update
+### 战略项（本季度）— 进展
 
 | # | Action | Target | Status |
 |---|--------|--------|--------|
@@ -184,7 +193,7 @@ OVERALL GEO SCORE
 
 ---
 
-## This Month's Wins
+## 本月成果（要写得“可感知、可验证”）
 
 > Use this section to celebrate — clients need to see the value clearly.
 
@@ -194,7 +203,7 @@ OVERALL GEO SCORE
 
 ---
 
-## New Issues Discovered
+## 本月新增问题/机会点
 
 > Issues found in current audit that weren't in baseline.
 
@@ -203,7 +212,7 @@ OVERALL GEO SCORE
 
 ---
 
-## Next Month Focus
+## 下月重点
 
 ### Priority Actions for [NEXT MONTH]:
 
@@ -233,7 +242,7 @@ OVERALL GEO SCORE
 
 ---
 
-## Estimated Business Impact
+## 预估业务影响（保守口径）
 
 Based on the [X]-point improvement this month:
 
@@ -247,8 +256,8 @@ as AI platforms re-index and update their knowledge bases.*
 
 ---
 
-*GEO Monthly Report — [COMPANY NAME] — [DATE]*
-*Questions or comments? [CONTACT EMAIL]*
+*GEO 月度报告 — [公司/品牌名] — [DATE]*
+*如需沟通： [CONTACT EMAIL]*
 ```
 
 ---

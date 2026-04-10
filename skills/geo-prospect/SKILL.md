@@ -18,6 +18,11 @@ allowed-tools: Read, Write, Bash, Glob
 Manage GEO agency prospects and clients through the full sales lifecycle.
 All data is stored in `~/.geo-prospects/prospects.json` (persistent across sessions).
 
+## China-First Requirements
+
+- **User-facing output**: All confirmations, tables, and guidance printed to the user MUST be in Simplified Chinese (zh-CN).
+- **Optional localization**: Currency and country fields can remain flexible, but default examples should not assume EU/US.
+
 ---
 
 ## Commands
@@ -91,7 +96,7 @@ Each prospect is stored as a JSON record:
 Read `~/.geo-prospects/prospects.json` and render a summary table:
 
 ```
-GEO Prospect Pipeline — March 2026
+GEO 线索管道（Pipeline）— 2026 年 3 月
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ID       Domain                  Company           Status      Score  Value
@@ -101,8 +106,8 @@ PRO-002  acme.com                ACME Corp         Lead        —       —
 PRO-003  bigshop.it              BigShop           Won         41/100  €6.0K
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Pipeline: 1 lead | 1 qualified | 0 proposals | 1 won | 0 lost
-Committed MRR: €6,000 | Pipeline Value: €4,500
+管道统计：1 条线索 | 1 条已合格 | 0 条已提案 | 1 条已成交 | 0 条丢单
+已承诺月收入（MRR）：€6,000 | 管道预估：€4,500
 ```
 
 ### `/geo prospect audit <id-or-domain>`
@@ -112,7 +117,7 @@ Committed MRR: €6,000 | Pipeline Value: €4,500
 3. Save audit output to `~/.geo-prospects/audits/<domain>-<date>.md`
 4. Update `audit_file` path in prospect record
 5. Add auto-note: "Quick audit run. GEO Score: XX/100."
-6. If score < 55: suggest "Score indicates strong sales opportunity. Run `/geo proposal <domain>` to generate proposal."
+6. If score < 55: suggest "该分数通常意味着明确的成交机会。建议运行 `/geo proposal <domain>` 生成提案。"
 
 ### `/geo prospect note <id-or-domain> "<text>"`
 
@@ -135,7 +140,7 @@ Visual revenue-focused pipeline summary:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-GEO AGENCY PIPELINE SUMMARY — March 2026
+GEO 机构管道汇总 — 2026 年 3 月
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 STAGE          COUNT   POTENTIAL VALUE   NOTES
