@@ -121,7 +121,10 @@ cd "$INSTALL_DIR"
 print_step "4/6" "安装 Python 依赖..."
 
 if [ -f "requirements.txt" ] && [ -n "$PYTHON_CMD" ]; then
-    if $PYTHON_CMD -m pip install -r requirements.txt --quiet --user; then
+    print_info "使用清华镜像源加速下载..."
+    if $PYTHON_CMD -m pip install -r requirements.txt \
+        --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
+        --user; then
         print_success "Python 依赖安装完成"
     else
         print_warning "Python 依赖安装失败，可以稍后手动安装"
