@@ -64,7 +64,22 @@ curl -fsSL https://raw.githubusercontent.com/hanyixu/GEO-Audit-QWEN/main/install
 curl -fsSL https://raw.githubusercontent.com/hanyixu/GEO-Audit-QWEN/main/install.sh | bash
 ```
 
-### 方式二：手动安装
+### 方式二：Homebrew 安装（macOS）
+
+> **前提：** 已安装 [Homebrew](https://brew.sh)
+
+```bash
+# 添加 tap
+brew tap hanyixu/geo-audit
+
+# 安装
+brew install geo-audit
+
+# 运行安装
+geo-audit
+```
+
+### 方式三：手动安装
 
 ```bash
 # 克隆仓库
@@ -76,7 +91,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-### Windows（Git Bash）
+### 方式四：Windows（Git Bash）
 
 > **注意：** 请使用 Git Bash 运行，不要使用 PowerShell 或 CMD。
 
