@@ -33,11 +33,28 @@ print_info() {
     echo -e "   ${1}"
 }
 
+# 显示旋转进度条
+show_spinner() {
+    local pid=$1
+    local msg=$2
+    local delay=0.1
+    local spinstr='|/-\'
+    while [ "$(ps a | awk '{print $1}' | grep $pid)" ] 2>/dev/null; do
+        local temp=${spinstr#?}
+        printf "   ${YELLOW}[%c]${NC} ${msg}    " "$spinstr"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\r"
+    done
+    printf "                                   \r"
+    echo ""
+}
+
 # 标题
-echo -e "\n${GREEN}╔════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║${NC}  ${YELLOW}GEO Audit QWEN - 安装程序${NC}                          ${GREEN}║${NC}"
-echo -e "${GREEN}║${NC}  为中文AI搜索引擎优化你的网站                    ${GREEN}║${NC}"
-echo -e "${GREEN}╚════════════════════════════════════════════════════════╝${NC}\n"
+echo -e "\n${GREEN}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "${GREEN}┃${NC}  ${YELLOW}GEO Audit QWEN - 安装程序${NC}                              ${GREEN}┃${NC}"
+echo -e "${GREEN}┃${NC}  为中文AI搜索引擎优化你的网站                            ${GREEN}┃${NC}"
+echo -e "${GREEN}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}\n"
 
 # [1/6] 检查依赖
 print_step "1/6" "检查系统依赖..."
@@ -97,24 +114,41 @@ INSTALL_DIR="$HOME/.geo-audit-qwen"
 if [ -d "$INSTALL_DIR" ]; then
     print_warning "检测到已安装的项目，正在更新..."
     cd "$INSTALL_DIR"
-    if git pull origin main &> /dev/null; then
+    print_info "正在连接 GitHub..."
+    git pull origin main > /tmp/geo-install.log 2>&1 &
+    PID=$!
+    show_spinner $PID "正在更新代码..."
+    wait $PID
+    if [ $? -eq 0 ]; then
         print_success "项目已更新到最新版本"
     else
         print_warning "Git pull 失败，将重新克隆"
         cd ..
         rm -rf "$INSTALL_DIR"
-        if git clone https://github.com/hanyixu/GEO-Audit-QWEN.git "$INSTALL_DIR"; then
+        print_info "正在下载项目文件..."
+        git clone --progress https://github.com/hanyixu/GEO-Audit-QWEN.git "$INSTALL_DIR" > /tmp/geo-install.log 2>&1 &
+        PID=$!
+        show_spinner $PID "正在下载代码..."
+        wait $PID
+        if [ $? -eq 0 ]; then
             print_success "项目下载完成"
         else
             print_error "克隆仓库失败"
+            cat /tmp/geo-install.log
             exit 1
         fi
     fi
 else
-    if git clone https://github.com/hanyixu/GEO-Audit-QWEN.git "$INSTALL_DIR"; then
+    print_info "正在下载项目文件..."
+    git clone --progress https://github.com/hanyixu/GEO-Audit-QWEN.git "$INSTALL_DIR" > /tmp/geo-install.log 2>&1 &
+    PID=$!
+    show_spinner $PID "正在下载代码..."
+    wait $PID
+    if [ $? -eq 0 ]; then
         print_success "项目下载完成"
     else
         print_error "克隆仓库失败"
+        cat /tmp/geo-install.log
         exit 1
     fi
 fi
@@ -126,9 +160,13 @@ print_step "4/6" "安装 Python 依赖..."
 
 if [ -f "requirements.txt" ] && command -v python3 &> /dev/null; then
     print_info "使用清华镜像源加速下载..."
-    if python3 -m pip install -r requirements.txt \
+    python3 -m pip install -r requirements.txt \
         --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
-        --user; then
+        --user > /tmp/geo-install-pip.log 2>&1 &
+    PID=$!
+    show_spinner $PID "正在安装 Python 依赖..."
+    wait $PID
+    if [ $? -eq 0 ]; then
         print_success "Python 依赖安装完成"
     else
         print_warning "Python 依赖安装失败，可以稍后手动安装"
@@ -195,9 +233,9 @@ else
 fi
 
 # 完成
-echo -e "\n${GREEN}╔════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║${NC}              ${YELLOW}🎉 安装完成！${NC}                            ${GREEN}║${NC}"
-echo -e "${GREEN}╚════════════════════════════════════════════════════════╝${NC}\n"
+echo -e "\n${GREEN}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "${GREEN}┃${NC}  ${YELLOW}🎉 安装完成！${NC}                                          ${GREEN}┃${NC}"
+echo -e "${GREEN}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}\n"
 
 echo -e "${BLUE}📁 安装位置:${NC}"
 echo -e "   项目文件: ${INSTALL_DIR}"

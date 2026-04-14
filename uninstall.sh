@@ -27,9 +27,9 @@ print_info() {
 }
 
 # 标题
-echo -e "\n${RED}╔════════════════════════════════════════════════════════╗${NC}"
-echo -e "${RED}║${NC}  ${YELLOW}GEO Audit QWEN - 卸载程序${NC}                          ${RED}║${NC}"
-echo -e "${RED}╚════════════════════════════════════════════════════════╝${NC}\n"
+echo -e "\n${RED}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "${RED}┃${NC}  ${YELLOW}GEO Audit QWEN - 卸载程序${NC}                              ${RED}┃${NC}"
+echo -e "${RED}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}\n"
 
 # 确认卸载
 echo -e "${YELLOW}⚠️  警告：此操作将删除以下文件：${NC}"
@@ -98,9 +98,9 @@ print_info "  • CRM 数据: ~/.geo-prospects/"
 print_info "  • Python 依赖包（可通过 pip uninstall 删除）"
 
 # 完成
-echo -e "\n${GREEN}╔════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║${NC}              ${YELLOW}🗑️  卸载完成！${NC}                            ${GREEN}║${NC}"
-echo -e "${GREEN}╚════════════════════════════════════════════════════════╝${NC}\n"
+echo -e "\n${GREEN}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${NC}"
+echo -e "${GREEN}┃${NC}  ${YELLOW}🗑️  卸载完成！${NC}                                          ${GREEN}┃${NC}"
+echo -e "${GREEN}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${NC}\n"
 
 echo -e "${BLUE}如需重新安装，请运行：${NC}"
 echo -e "   ${YELLOW}curl -fsSL https://raw.githubusercontent.com/hanyixu/GEO-Audit-QWEN/main/install.sh | bash${NC}\n"
