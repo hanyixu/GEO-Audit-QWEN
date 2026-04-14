@@ -7,6 +7,7 @@ allowed-tools:
   - Glob
   - Bash
   - WebFetch
+  - WebSearch
   - Write
 ---
 
@@ -14,14 +15,14 @@ allowed-tools:
 
 ## Goal
 
-Evaluate a brand’s CN internet “discoverability + retrievability + verifiability + re-citable content” footprint, and produce an actionable fill-the-gaps plan. Focus areas:
+Evaluate a brand's CN internet "discoverability + retrievability + verifiability + re-citable content" footprint, and produce an actionable fill-the-gaps plan. Focus areas:
 
-- **Entity foundation**: Baidu Baike / authoritative directories as “baseline facts”
+- **Entity foundation**: Baidu Baike / authoritative directories as "baseline facts"
 - **Long-form deposits**: WeChat Official Accounts (公众号) and WeChat Search (搜一搜)
 - **High-interaction ecosystems**: Xiaohongshu, Douyin, Kuaishou, Bilibili, Zhihu, Weibo
 - **Discussion & risk**: Baidu Zhidao, Tieba
 
-> Note: Many CN platforms have strict anti-scraping controls. This skill prioritizes **search-based verification + recommendations** over brittle automated crawling.
+> ⚠️ **CRITICAL: You MUST perform actual web searches to verify brand presence on each platform. Do NOT guess, assume, or infer without searching. Every platform check requires a real search query.**
 
 ---
 
@@ -59,16 +60,44 @@ Optional vertical add-ons (adjust weights per industry; keep total = 100%):
 - Industry/category
 - Top 3 products/services (canonical naming)
 
-### Step 2: Per-platform checks (Presence + Quality + Third-party)
+### Step 2: Per-platform checks (Presence + Quality + Third-party) — MANDATORY SEARCH VERIFICATION
 
-For each platform, record:
-- **Presence**: official account / profile / entry exists?
-- **Quality**: does it contain “citable blocks” (definitions, FAQs, specs, comparisons, cases)?
-- **Third-party**: independent reviews/discussions/media mentions exist?
+⚠️ **You MUST use `web_search` tool for EVERY platform listed below. No exceptions.**
 
-Suggested queries (examples):
-- Baidu: `[品牌名] 百度百科`, `[品牌名] 公众号`, `[品牌名] 小红书`, `[品牌名] 抖音`, `[品牌名] 快手`, `[品牌名] B站`, `[品牌名] 知乎`, `[品牌名] 微博`, `[品牌名] 百度知道`, `[品牌名] 贴吧`
-- Optional: Sogou Weixin search for historical OA articles (环境允许时)
+**Required search queries (execute ALL of these using `web_search` tool):**
+
+| # | 平台 | 必须执行的搜索查询 |
+|---|---|---|
+| 1 | 百度百科 | `"[品牌名] 百度百科"`, `"[品牌中文名] 百科"` |
+| 2 | 微信公众号 | `"[品牌名] 微信公众号"`, `"[品牌名] 公众号"`, `"[品牌名] 搜狗微信"` |
+| 3 | 小红书 | `"[品牌名] 小红书"`, `"[品牌名] xhs"` |
+| 4 | 抖音 | `"[品牌名] 抖音"`, `"[品牌名] douyin"` |
+| 5 | 快手 | `"[品牌名] 快手"`, `"[品牌名] kuaishou"` |
+| 6 | B站 | `"[品牌名] B站"`, `"[品牌名] bilibili"`, `"[品牌名] b站"` |
+| 7 | 知乎 | `"[品牌名] 知乎"`, `"[品牌名] zhihu"` |
+| 8 | 微博 | `"[品牌名] 微博"`, `"[品牌名] weibo"` |
+| 9 | 百度知道/贴吧 | `"[品牌名] 百度知道"`, `"[品牌名] 贴吧"`, `"[品牌名] 知道"` |
+
+**Plus additional entity validation searches:**
+- `"[品牌名] [城市名]"` — 验证本地实体存在
+- `"[品牌名] [产品名]"` — 验证产品关联
+- `"[官网域名]"` — 验证域名独立索引（如 `teknodas.cn`）
+- `"[公司全称] 企查查"` 或 `"[公司全称] 天眼查"` — 验证企业注册
+
+**For each platform, record from search results:**
+- **Presence**: 搜索结果中是否有官方账号/词条/主页？
+- **Quality**: 搜索结果的 snippet 是否显示可引用内容？
+- **Third-party**: 搜索结果是否包含独立评测/讨论/媒体提及？
+- **Result count**: 有多少条相关结果？（0 = 完全不存在，1-3 = 极少，4-10 = 一般，10+ = 丰富）
+- **Relevance**: 搜索结果的相关度（高/中/低/无关）
+
+**判定规则：**
+- 搜索结果 **0 条相关** → 状态：**Absent（缺失）**，分数：0/100
+- 搜索结果 **1-3 条但不相关** → 状态：**Absent（缺失）**，分数：0/100
+- 搜索结果 **1-3 条且相关** → 状态：**Minimal（极少）**，分数：20/100
+- 搜索结果 **4-10 条** → 状态：**Present（存在）**，分数：50/100
+- 搜索结果 **10+ 条** → 状态：**Active（活跃）**，分数：80/100
+- 搜索结果 **10+ 条且有官方认证账号** → 状态：**Strong（强势）**，分数：100/100
 
 ### Step 3: Sentiment & risk themes
 

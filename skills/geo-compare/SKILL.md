@@ -8,7 +8,11 @@ description: >
   "confronta", "progressi", "report mensile", or when running a monthly client check-in.
 version: 1.0.0
 tags: [geo, business, delta, monthly, reporting, client, progress]
-allowed-tools: Read, Write, Bash, Glob
+allowedTools:
+  - Read
+  - Write
+  - Bash
+  - Glob
 ---
 
 # GEO Monthly Delta Report Generator

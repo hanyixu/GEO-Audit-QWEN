@@ -8,7 +8,12 @@ description: >
   or after completing a GEO audit for a prospect.
 version: 1.0.0
 tags: [geo, business, proposal, sales, pricing, client]
-allowed-tools: Read, Write, Bash, Glob, WebFetch
+allowedTools:
+  - Read
+  - Write
+  - Bash
+  - Glob
+  - WebFetch
 ---
 
 # GEO Proposal Generator

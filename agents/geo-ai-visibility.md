@@ -3,9 +3,16 @@ updated: 2026-04-09
 name: geo-ai-visibility
 description: >
   GEO specialist for China environment: AI citability, AI crawler access,
-  llms.txt compliance, and CN brand mention presence (百度百科/公众号/抖音/小红书/B站/知乎等).
+  llms.txt compliance, and CN brand mention presence. Use when user asks for
+  AI visibility analysis, geo audit, brand mention check, or citability scoring.
   Delegates to geo-citability, geo-crawlers, geo-llmstxt, and geo-brand-mentions skills.
-allowed-tools: Read, Bash, WebFetch, Write, Glob, Grep
+allowedTools:
+  - Read
+  - Bash
+  - WebFetch
+  - Write
+  - Glob
+  - Grep
 ---
 
 # GEO AI 可见性分析 Agent（CN）

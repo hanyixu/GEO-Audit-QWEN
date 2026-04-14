@@ -4,7 +4,13 @@ description: CN platform-specific AI optimization — focus on 元宝、豆包�
 version: 1.0.0
 author: geo-seo-claude-cn
 tags: [geo, ai-search, platform-optimization, china, yuanbao, doubao, qwen]
-allowed-tools: Read, Grep, Glob, Bash, WebFetch, Write
+allowedTools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - WebFetch
+  - Write
 ---
 
 # GEO Platform Optimization (China-First)
