@@ -7,6 +7,26 @@
 
 ---
 
+### 快速上手
+
+**这个项目做什么：** 一键审计网站在中文AI搜索引擎（豆包/元宝/千问/Kimi/DeepSeek/百度）中的可见度，同时优化传统SEO基础。14个专业子技能覆盖AI引用度、品牌提及、技术SEO、内容质量、结构化数据等维度，生成0-100的综合GEO评分和可交付客户的优化报告。
+
+
+
+**安装：** 
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hanyixu/GEO-Audit-QWEN/main/install.sh | bash
+```
+
+或手动安装：`git clone https://github.com/hanyixu/GEO-Audit-QWEN.git && cd GEO-Audit-QWEN && chmod +x install.sh && ./install.sh`
+
+
+
+**运行第一次audit：** 安装完成后，打开 Qwen Code，输入 `/geo audit https://你的网站.com` 即可执行完整审计，5个并行子智能体会自动分析并生成GEO-AUDIT-REPORT.md报告文件。
+
+---
+
 ## 🌟 项目简介
 
 **GEO（Generative Engine Optimization，智能引擎优化）** 是一套针对 AI 驱动搜索引擎的优化方法论。与传统 SEO 不同，GEO 的目标是让 AI 系统（豆包、元宝、通义千问、Kimi、DeepSeek 等）能够：
@@ -34,7 +54,7 @@
 
 ---
 
-## 🚀 快速开始
+## 🚀 安装运行
 
 ### 方式一：一键安装（推荐）
 
